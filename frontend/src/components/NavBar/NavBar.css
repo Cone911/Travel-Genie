@@ -1,0 +1,10 @@
+.NavBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2vmin;
+}
+
+.NavBar span {
+  color: rgb(108, 9, 87);
+}
