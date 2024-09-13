@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Grandiore';
+  src: url('../fonts/grandiore.extrabold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DarkMagic';
+  src: url('../../../fonts/DarkMagic.ttf') format('truetype');
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,10 +29,22 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Grandiore;
+  color: whitesmoke;
 }
 
-h1, h2 {
+h1 {
+  font-family: DarkMagic;
   text-align: center;
+  font-size: 5svh;
+  color: rgb(218, 165, 32);
+  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.85);
+}
+
+h2 {
+  text-align: center;
+  font-size: 5svh;
+  color: rgb(218, 165, 32);
 }
 
 button {
@@ -48,9 +70,10 @@ button:disabled {
 a {
   border-radius: 0.8vmin;
   padding: 0.5vmin;
-  font-size: 2vmin;
+  font-size: 3vmin;
   text-decoration: none;
-  color: #1a1a1a;
+  color: whitesmoke;
+  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.85);
 }
 
 a:hover {

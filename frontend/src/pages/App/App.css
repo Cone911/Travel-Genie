@@ -1,6 +1,10 @@
 #react-app {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto 1fr;
+  height: 100svh;
+  background-image: url('../../../images/Background.png');
+  background-size: cover;
+  background-position: center;
 }
 
 #main-section {
