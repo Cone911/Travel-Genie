@@ -5,11 +5,28 @@
   background-image: url('../../../images/Background.png');
   background-size: cover;
   background-position: center;
+  transition: grid-template-columns 0.3s ease;
 }
 
 #main-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: space-between;
+  height: 100%;
+}
+
+#main-section.sidebar-hidden {
+  grid-template-columns: 0 1fr;
+}
+
+.sidebar{
+  transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar.visible {
+  transform: translateX(0);
 }

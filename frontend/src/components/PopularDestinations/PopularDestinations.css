@@ -1,0 +1,26 @@
+.popular-destinations {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .destinations-carousel {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .destination-card {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+  }
+  

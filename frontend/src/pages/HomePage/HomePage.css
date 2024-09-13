@@ -1,0 +1,6 @@
+.home-page{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1%;
+    padding-top: 1.5vmin;
+}

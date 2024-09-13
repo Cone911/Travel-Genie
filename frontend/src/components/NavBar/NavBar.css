@@ -15,10 +15,29 @@
   color: rgb(108, 9, 87);
 }
 
+.navigation-left-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
+}
+
 .logo {
   align-self: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   font-family: 'DarkMagic', sans-serif;
+}
+
+.hamburger-button {
+  height: 8svh;
+  color: white;
+  font-size: 4svh;
+  cursor: pointer;
+  z-index: 2;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+  background-color: rgba(218, 165, 32, 0.703);
+  border: double white 3px;
+  border-radius: 8px;
 }
