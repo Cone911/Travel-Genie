@@ -20,7 +20,7 @@ function App() {
   return (
     <main id="react-app">
       <NavBar user={user} setUser={setUser} toggleSidebar={toggleSidebar}/>
-      <section id="main-section" className={isSidebarVisible ? 'sidebar-visible' : 'sidebar-hidden'}>
+      <section id="main-section">
         {user ? (
           <Routes>
             <Route path="/" element={<HomePage toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />} />

@@ -1,6 +1,13 @@
 .home-page{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 0 auto;
     column-gap: 1%;
     padding-top: 1.5vmin;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
