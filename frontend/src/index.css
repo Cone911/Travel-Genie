@@ -10,7 +10,7 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.0;
   font-weight: 400;
 
   color: #1a1a1a;
@@ -47,7 +47,15 @@ h2 {
   color: rgb(218, 165, 32);
 }
 
-h3, h4{
+h3{
+  font-size: 4vmin;
+  color: white;
+  font-weight: bold;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
+  height: 100%;
+}
+
+h4{
   text-align: center;
 }
 
