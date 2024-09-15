@@ -14,16 +14,19 @@ const likeSchema = new Schema({
 });
 
 const popularSearchSchema = new Schema({
-  destination: {
+  city: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
   },
   search_count: {
     type: Number,
-    default: 0
+    default: 0 
   },
-  likes: [likeSchema],
+  likes: [likeSchema], 
 });
 
 const PopularSearch = mongoose.model('PopularSearch', popularSearchSchema);

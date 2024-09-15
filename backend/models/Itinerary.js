@@ -8,7 +8,11 @@ const itinerarySchema = new Schema(
       ref: 'User',
       required: true
     },
-    destination: {
+    country: {
+      type: String,
+      required: true
+    },
+    city: {
       type: String,
       required: true
     },
@@ -28,11 +32,13 @@ const itinerarySchema = new Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, 
   }
 );
+
 
 const Itinerary = mongoose.model('Itinerary', itinerarySchema);
 
 module.exports = Itinerary;
+
 

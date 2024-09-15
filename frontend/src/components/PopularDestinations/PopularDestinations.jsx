@@ -2,19 +2,21 @@ import './PopularDestinations.css';
 
 export default function PopularDestinations() {
   const destinations = [
-    { id: 1, name: 'Bangkok', country: 'Thailand', days: 3, likes: 15, imageUrl: '../../images/Destinations/Bangkok.jpg' },
-    { id: 2, name: 'Paris', country: 'France', days: 5, likes: 25, imageUrl: '../../images/Destinations/Paris.jpg' },
-    { id: 3, name: 'Tokyo', country: 'Japan', days: 10, likes: 25, imageUrl: '../../images/Destinations/Tokyo.jpg' },
-    { id: 4, name: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
-    { id: 5, name: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
-    { id: 6, name: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
-    { id: 7, name: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
-    { id: 8, name: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
+    { id: 1, city: 'Bangkok', country: 'Thailand', days: 3, likes: 15, imageUrl: '../../images/Destinations/Bangkok.jpg' },
+    { id: 2, city: 'Paris', country: 'France', days: 5, likes: 25, imageUrl: '../../images/Destinations/Paris.jpg' },
+    { id: 3, city: 'Tokyo', country: 'Japan', days: 10, likes: 25, imageUrl: '../../images/Destinations/Tokyo.jpg' },
+    { id: 4, city: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
+    { id: 5, city: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
+    { id: 6, city: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
+    { id: 7, city: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
+    { id: 8, city: 'New York', country: 'USA', days: 3, likes: 0, imageUrl: '../../images/Destinations/NewYork.jpg' },
   ];
 
   return (
     <div className="popular-destinations">
-      <h2>Popular Destinations</h2>
+      <div className='popular-destinations-title'>
+        <h2>Popular Destinations</h2>
+      </div>
       <div className="destinations-carousel">
         {destinations.map((destination) => (
           <div
@@ -23,9 +25,9 @@ export default function PopularDestinations() {
             style={{ backgroundImage: `url(${destination.imageUrl})` }}
           >
             <div className="destination-info">
-              <h3>{destination.name}</h3>
-              <p>{destination.country}</p>
-              <p>{destination.days} days</p>
+              <h3>{destination.city}</h3>
+              <p className='destination-country'>{destination.country}</p>
+              <p className='destination-days'>{destination.days} days</p>
               <button className="like-button">❤️ {destination.likes}</button>
             </div>
           </div>
