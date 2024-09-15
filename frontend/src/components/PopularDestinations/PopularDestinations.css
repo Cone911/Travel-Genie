@@ -28,6 +28,8 @@
 
 .destination-card {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
   background-position: center;
   background-size: cover;
   width: 30vw;
@@ -52,11 +54,13 @@
 }
 
 .like-button {
-  background: none;
-  border: none;
+  align-self: flex-end;
+  background: rgba(213, 213, 213, 0.686);
+  border: solid white 1px;
   cursor: pointer;
   font-size: 18px;
-  color: red;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes appear {

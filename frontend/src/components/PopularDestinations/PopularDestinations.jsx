@@ -25,11 +25,11 @@ export default function PopularDestinations() {
             style={{ backgroundImage: `url(${destination.imageUrl})` }}
           >
             <div className="destination-info">
-              <h3>{destination.city}</h3>
+              <h3 className='destination-city'>{destination.city}</h3>
               <p className='destination-country'>{destination.country}</p>
               <p className='destination-days'>{destination.days} days</p>
-              <button className="like-button">❤️ {destination.likes}</button>
             </div>
+            <button className="like-button">❤️ {destination.likes}</button>
           </div>
         ))}
       </div>
