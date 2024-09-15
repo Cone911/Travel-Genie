@@ -11,7 +11,7 @@ import LogInPage from '../LogInPage/LogInPage';
 
 function App() {
   const [user, setUser] = useState(getUser());
-  const [isSidebarVisible, setSidebarVisible] = useState(true);
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
