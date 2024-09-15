@@ -1,13 +1,16 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 16svw;
-    height: 100%;
-    padding: 3%;
-    background-color: rgba(91, 26, 242, 0.183);
-    color: white;
-    border-radius: 8px;
-    box-shadow: 5px 10px 8px 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  width: 20svw;
+  height: 80%;
+  padding: 3%;
+  background-color: rgba(91, 26, 242, 0.496);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 5px 10px 8px 2px rgba(0, 0, 0, 0.75);
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  padding: 2%;
 }
 
 .user-icon {
@@ -16,20 +19,27 @@
   justify-content: center;
   align-items: center;
   padding-left: 2%;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
 }
 
 .user-icon img {
   width: 8svw;
   position: relative;
 }
-  
-  .logout-button {
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    margin-top: 12px;
+
+.username-title {
+  margin: 0;
 }
-  
+
+.yourTrips-title {
+  text-align: center;
+}
+
+.logout-button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 12px;
+}

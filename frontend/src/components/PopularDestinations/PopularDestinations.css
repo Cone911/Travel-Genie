@@ -10,11 +10,13 @@
 
 .popular-destinations-title{
   color: rgb(218, 165, 32);
-  background-color: rgba(91, 26, 242, 0.183);
+  background-color: rgba(91, 26, 242, 0.42);
+  border: solid rgba(91, 26, 242, 1) 2px;
   border-radius: 8px;
   text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.85);
   width: 100%;
   max-width: 90vw;
+  backdrop-filter: blur(2px);
 }
 
 .destinations-carousel {
@@ -32,15 +34,20 @@
   flex-direction: column;
   background-position: center;
   background-size: cover;
-  width: 30vw;
+  width: 20svw;
   height: 45svh;
   max-height: 45svh;
-  margin: 10px;
+  margin: 1.2%;
   padding: 1%;
-  border: 2px solid #ccc;
+  border: 2px solid transparent;
+  box-shadow: 
+    0 0 2px goldenrod, 
+    0 0 4px goldenrod, 
+    0 0 6px goldenrod, 
+    0 0 8px goldenrod, 
+    0 0 10px goldenrod;
   text-align: left;
-  box-shadow: 5px 5px 8px 4px rgba(0, 0, 0, 0.65);
-  border-radius: 8px;
+  border-radius: 22px;
   animation: appear linear;
   animation-timeline: view(x);
   animation-range: entry 0% cover 100%;
@@ -53,10 +60,18 @@
   height: 100%;
 }
 
+.destination-city{
+  margin-bottom: 0;
+}
+
+.destination-country, .destination-days {
+  margin: 0;
+}
+
 .like-button {
   align-self: flex-end;
   background: rgba(213, 213, 213, 0.686);
-  border: solid white 1px;
+  border: solid goldenrod 2px;
   cursor: pointer;
   font-size: 18px;
   color: rgb(255, 255, 255);
@@ -66,7 +81,12 @@
 @keyframes appear {
   0% {
     opacity: 0.5;
-    scale: 0.75;
+    scale: 0.7;
+  }
+
+  40% {
+    opacity: 1;
+    scale: 1;
   }
 
   50% {
@@ -74,8 +94,13 @@
     scale: 1;
   }
 
+  60% {
+    opacity: 1;
+    scale: 1;
+  }
+
   100% {
     opacity: 0.80;
-    scale: 0.75;
+    scale: 0.7;
   }
 }

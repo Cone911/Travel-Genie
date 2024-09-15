@@ -10,7 +10,7 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.0;
+  line-height: 1.2;
   font-weight: 400;
 
   color: #1a1a1a;
@@ -35,8 +35,7 @@ body {
 
 h1 {
   font-family: DarkMagic;
-  text-align: center;
-  font-size: 5svh;
+  text-align:6.5vmin;
   color: rgb(218, 165, 32);
   text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.85);
 }
@@ -44,12 +43,12 @@ h1 {
 h2 {
   font-family: DarkMagic;
   text-align: center;
-  font-size: 5svh;
+  font-size: 5.5vmin;
   width: 100%;
 }
 
 h3{
-  font-size: 4vmin;
+  font-size: 4.5vmin;
   color: white;
   font-weight: bold;
   text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
@@ -57,7 +56,9 @@ h3{
 }
 
 h4{
-  text-align: center;
+  font-size: 3vmin;
+  color: rgb(202, 202, 202);
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
 }
 
 button {

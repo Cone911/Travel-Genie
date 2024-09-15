@@ -9,6 +9,7 @@
   align-items: center;
   padding: 1vmin;
   background-color: rgba(91, 26, 242, 0.183);
+  backdrop-filter: blur(1px);
 }
 
 .NavBar span {

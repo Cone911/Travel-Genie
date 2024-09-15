@@ -11,9 +11,9 @@ export default function Sidebar({ toggleSidebar, isSidebarVisible }) {
           src='../../images/user.svg'
           className="user-icon" 
         />
-        <h3>Username</h3>
+        <h3 className='username-title'>Username</h3>
       </div>
-      <h4>Your Trips</h4>
+      <h4 className='yourTrips-title'>Your Trips</h4>
       <ul>
         {trips.map((trip, index) => (
           <li key={index}>{trip}</li>

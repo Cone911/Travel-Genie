@@ -26,8 +26,8 @@ export default function PopularDestinations() {
           >
             <div className="destination-info">
               <h3 className='destination-city'>{destination.city}</h3>
-              <p className='destination-country'>{destination.country}</p>
-              <p className='destination-days'>{destination.days} days</p>
+              <h4 className='destination-country'>{destination.country}</h4>
+              <h4 className='destination-days'>{destination.days} days</h4>
             </div>
             <button className="like-button">❤️ {destination.likes}</button>
           </div>
