@@ -1,49 +1,68 @@
 .popular-destinations {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  .destinations-carousel {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    width: 100%;
-    max-width: 90vw;
-  }
-  
-  .destination-card {
-    flex-shrink: 0;
-    background-position: center;
-    background-size: cover;
-    width: 30vw;
-    height: 45svh;
-    max-height: 45svh;
-    margin: 10px;
-    padding: 1%;
-    border: 2px solid #ccc;
-    text-align: left;
-    box-shadow: 5px 5px 8px 4px rgba(0, 0, 0, 0.65);
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.destinations-carousel {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  width: 100%;
+  max-width: 90vw;
+}
+
+.destination-card {
+  flex-shrink: 0;
+  background-position: center;
+  background-size: cover;
+  width: 30vw;
+  height: 45svh;
+  max-height: 45svh;
+  margin: 10px;
+  padding: 1%;
+  border: 2px solid #ccc;
+  text-align: left;
+  box-shadow: 5px 5px 8px 4px rgba(0, 0, 0, 0.65);
+  border-radius: 8px;
+  animation: appear linear;
+  animation-timeline: view(x);
+  animation-range: entry 0% cover 100%;
+}
+
+destination-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0.5;
+    scale: 0.75;
   }
 
-  destination-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+  50% {
+    opacity: 1;
+    scale: 1;
   }
-  
-  .like-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: red;
+
+  100% {
+    opacity: 0.5;
+    scale: 0.75;
   }
-  
+}
