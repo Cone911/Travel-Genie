@@ -2,6 +2,7 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    position: relative;
   }
   
   .search-input {
@@ -18,7 +19,7 @@
   }
 
   .days-selector, .party-size-selector {
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +30,7 @@
     border-radius: 0 12px 12px 12px;
     color: whitesmoke;
     transform: translateX(18px);
+    z-index: 100;
   }
 
   .party-size-selector{
