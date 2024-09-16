@@ -62,20 +62,20 @@ h4{
 }
 
 button {
-  border: 0.5vmin solid #1a1a1a;
-  border-radius: 0.5vmin;
-  padding: 0.8vmin;
+  border-radius: 8px;
   font-size: 2vmin;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  color: whitesmoke;
+  background: linear-gradient(45deg, #ffce0c50, #ffd21e7c, #ffe65876);
+  color: rgb(108, 9, 87);
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 button:hover {
-  background-color: white;
+  background-color: rgba(163, 163, 163, 0.514);
   color: #1a1a1a;
-  border-color: #1a1a1a;
+  border-color: gold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.4);
 }
 button:disabled {
   background-color: grey;

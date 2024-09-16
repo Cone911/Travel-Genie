@@ -12,10 +12,73 @@
   .search-button {
     background-color: #5a67d8;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     cursor: pointer;
   }
 
+  .days-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    width: fit-content;
+    background-color: #522d5b;
+    border-radius: 0 12px 12px 12px;
+    color: whitesmoke;
+    transform: translateX(18px);
+  }
+  
+  .days-selector::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: 0px;
+    height: 25px;
+    width: 23px;
+    border-bottom-left-radius: 75%;
+    background-color: transparent;
+    box-shadow: 0 12px 0 #522d5b;
+    z-index: -1;
+  }
+  
+  .circle-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .circle-button:disabled {
+    background-color: #490000;
+    cursor: not-allowed;
+  }
+
+  .autocomplete-dropdown {
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+  }
+  
+  .suggestion-item--active {
+    background-color: #fafafa;
+  }
   
   
