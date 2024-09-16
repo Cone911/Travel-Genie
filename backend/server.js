@@ -1,9 +1,8 @@
-const path = require('path'); // Built into Node
+const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const app = express();
 
-// Process the secrets/config vars in .env
 require('dotenv').config();
 
 // Connect to Database
@@ -13,11 +12,12 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+console.log("Checking if my API is setup correctly: ", process.env.OPENAI_API_KEY);
+
 app.use(logger('dev'));
 // Serve static assets from the frontend's built code folder (dist)
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
-// Note that express.urlencoded middleware is not needed
-// because forms are not submitted!
+// Middleware to parse JSON
 app.use(express.json());
 
 // Middleware to check the request's headers for a JWT and
@@ -27,6 +27,7 @@ app.use(require('./middleware/checkToken'));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/itineraries', require('./routes/itineraries'));
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
 // Remember to use ensureLoggedIn middleware when mounting
 // routes and/or within the route modules to protect routes

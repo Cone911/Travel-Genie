@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema(
   {
-    user_id: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true
@@ -30,15 +30,19 @@ const itinerarySchema = new Schema(
       required: true,
       min: 0
     },
+    segments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'ItinerarySegment'
+    }]
   },
   {
     timestamps: true, 
   }
 );
 
-
 const Itinerary = mongoose.model('Itinerary', itinerarySchema);
 
 module.exports = Itinerary;
+
 
 

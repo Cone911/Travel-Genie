@@ -19,16 +19,8 @@ const itinerarySegmentSchema = new Schema(
     },
     image_url: {
       type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    country: {
-      type: String,
-      required: true
-    },
+      default: 'https://i.imgur.com/AGoG1hS.png'
+    }
   },
   {
     timestamps: true, 
