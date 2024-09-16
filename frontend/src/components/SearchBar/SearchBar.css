@@ -17,21 +17,25 @@
     cursor: pointer;
   }
 
-  .days-selector {
+  .days-selector, .party-size-selector {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
+    padding: 12px;
     width: fit-content;
     background-color: #522d5b;
     border-radius: 0 12px 12px 12px;
     color: whitesmoke;
     transform: translateX(18px);
   }
+
+  .party-size-selector{
+    flex-direction: column;
+  }
   
-  .days-selector::before {
+  .days-selector::before, .party-size-selector::before {
     content: "";
     position: absolute;
     top: -25px;
@@ -44,6 +48,20 @@
     z-index: -1;
   }
   
+  .party-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .selector-controls {
+    display: flex;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
   .circle-button {
     width: 30px;
     height: 30px;
