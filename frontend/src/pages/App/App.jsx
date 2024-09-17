@@ -17,12 +17,8 @@ function App() {
 
   useEffect(() => {
     const fetchAllItineraries = async () => {
-      try {
         const fetchedItineraries = await itineraryService.index();
         setItineraries(fetchedItineraries);
-      } catch (err) {
-        console.error('Failed to fetch itineraries:', err);
-      }
     };
     if (user) fetchAllItineraries();
   }, [user]);

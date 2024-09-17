@@ -109,7 +109,7 @@ export default function SearchBar({ handleAddItinerary }) {
               {loading && <div><FontAwesomeIcon icon={faWandMagicSparkles} shake /></div>}
               {suggestions.map((suggestion, index) => {
                 const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
-                const style = { backgroundColor: suggestion.active ? '#fafafa' : '#ffffff', cursor: 'pointer' };
+                const style = { backgroundColor: suggestion.active ? '#daa520;' : '#5b1af22f', cursor: 'pointer' };
                 return (
                   <div key={index} 
                     {...getSuggestionItemProps(suggestion, {

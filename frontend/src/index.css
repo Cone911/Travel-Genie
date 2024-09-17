@@ -41,14 +41,16 @@ h1 {
 }
 
 h2 {
-  font-family: DarkMagic;
+  font-family: Grandiore;
+  color: white;
   text-align: center;
-  font-size: 5.5vmin;
+  font-size: 4vmin;
   width: 100%;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
 }
 
 h3{
-  font-size: 4.5vmin;
+  font-size: 3vmin;
   color: white;
   font-weight: bold;
   text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
@@ -56,7 +58,7 @@ h3{
 }
 
 h4{
-  font-size: 3vmin;
+  font-size: 2vmin;
   color: rgb(202, 202, 202);
   text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.75);
 }
@@ -91,7 +93,7 @@ a {
 }
 
 a:hover {
-  background-color: #1a1a1a;
+  background-color: #1a1a1aac;
   color: whitesmoke;
 }
 
@@ -117,10 +119,6 @@ form > button:last-child {
 label {
   font-size: 2vmin;
   font-weight: bold;
-}
-
-h2 {
-  text-align: center;
 }
 
 .error-message {

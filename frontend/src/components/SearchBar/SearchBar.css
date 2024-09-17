@@ -85,12 +85,17 @@
   }
 
   .autocomplete-dropdown {
-    border: 1px solid #ddd;
-    max-height: 200px;
+    font-family: Grandiore;
+    color: white;
+    border: 1px solid #daa520;
+    max-height: 220px;
     overflow-y: auto;
     position: absolute;
     z-index: 1000;
-    background-color: white;
+    background-color: #5b1af22f;
+    box-shadow: 3px 3px 8px #522d5b;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
   
   .suggestion-item {
@@ -98,7 +103,7 @@
   }
   
   .suggestion-item--active {
-    background-color: #fafafa;
+    background-color: #daa5208e;
   }
   
   

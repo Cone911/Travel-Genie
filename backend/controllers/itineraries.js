@@ -56,6 +56,7 @@ async function create(req, res) {
     // Segment response by day
     const segments = segmentResponse(assistantResponse);
 
+    // Create the itinerary with embedded segments
     const itinerary = new Itinerary({
       user: req.user._id,
       country,
@@ -63,23 +64,10 @@ async function create(req, res) {
       days,
       adults,
       children,
+      segments,
     });
 
     const savedItinerary = await itinerary.save();
-
-    // Save the itinerary segments to the database
-    const savedSegments = await ItinerarySegment.insertMany(
-      segments.map((segment, index) => ({
-        itinerary_id: savedItinerary._id,
-        day_number: index + 1,
-        description: segment.content,
-        image_url: segment.image_url || 'https://i.imgur.com/AGoG1hS.png',
-      }))
-    );
-
-    // Update the itinerary with the segment IDs
-    savedItinerary.segments = savedSegments.map((segment) => segment._id);
-    await savedItinerary.save();
 
     res.status(201).json(savedItinerary);
   } catch (error) {
@@ -88,7 +76,7 @@ async function create(req, res) {
   }
 }
 
-// Helper function to segment the response
+// Helper function to split the Itinerary into segments.
 function segmentResponse(response) {
   const segments = [];
   const days = response.split(/Day \d+/);
@@ -96,19 +84,20 @@ function segmentResponse(response) {
 
   days.forEach((dayContent, index) => {
     segments.push({
-      content: dayContent.trim(),
+      day_number: index + 1, // Ensure `day_number` is present
+      description: dayContent.trim(), // Ensure `description` is present
+      image_url: 'https://i.imgur.com/AGoG1hS.png' // Add a default image URL if needed
     });
   });
 
   return segments;
 }
 
+
+
 // Get a specific itinerary by ID
 async function show(req, res) {
-    const itinerary = await Itinerary.findById(req.params.itineraryId).populate('segments');
-
-    console.log('Fetched itinerary with populated segments:', itinerary); // Debugging log
-
+    const itinerary = await Itinerary.findById(req.params.itineraryId);
     if (!itinerary) return res.status(404).json({ message: 'Itinerary not found' });
     res.json(itinerary);
 }

@@ -1,0 +1,25 @@
+.itinerary-title-container {
+    display: grid;
+    grid-template-areas:
+        "title duration"
+        "title party";
+    grid-template-rows: repeat(2, auto);
+    width: 85%;
+}
+
+.itinerary-title {
+   grid-area: title;
+   grid-row: span 2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.itinerary-duration {
+    grid-area: duration;
+}
+
+.itinerary-party {
+    grid-area: party;
+}
+

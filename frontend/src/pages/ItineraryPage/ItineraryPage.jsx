@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import '../ItineraryPage/ItineraryPage.css';
 
 export default function ItineraryPage({ user, itineraries, onSegmentRefresh }) {
   const { itineraryId } = useParams(); 
@@ -10,14 +11,17 @@ export default function ItineraryPage({ user, itineraries, onSegmentRefresh }) {
   console.log('Itinerary ID from URL:', itineraryId);
   console.log('Itineraries prop:', itineraries);
   console.log('Matched itinerary:', itinerary);
+  console.log('Segments:', itinerary?.segments); 
 
   if (!itinerary) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>Itinerary for {itinerary.city}, {itinerary.country}</h2>
-      <h2>Duration: {itinerary.days} days</h2>
-      <p>Adults: {itinerary.adults}, Children: {itinerary.children}</p>
+    <div className='main-content'>
+      <div className='itinerary-title-container'>
+        <h2 className='itinerary-title'>{itinerary.city}, {itinerary.country}</h2>
+        <h4 className='itinerary-duration'>Duration: {itinerary.days} days</h4>
+        <h4 className='itinerary-party'>Adults: {itinerary.adults}, Children: {itinerary.children}</h4>
+      </div>
       <h3>Daily Plan:</h3>
       {itinerary.segments.map((segment) => (
         <div key={segment._id} className="itinerary-segment">
