@@ -72,39 +72,11 @@
     display: block;
     margin: 0 auto;   
 }
-
-.markdown-content {
-    line-height: 1.6;
-    font-size: 16px;
-  }
   
-  .markdown-content h1,
-  .markdown-content h2,
-  .markdown-content h3 {
-    color: #333;
-    margin: 10px 0;
-    font-weight: bold;
+.itinerary-description ul {
+    list-style-type:symbols(test);
+    margin-left: 20px;
+    padding-left: 15px;
+    margin-top: 10px;
   }
-  
-  .markdown-content p {
-    margin: 8px 0;
-  }
-  
-  .markdown-content ul {
-    padding-left: 20px;
-    list-style-type: disc;
-  }
-  
-  .markdown-content li {
-    margin-bottom: 6px;
-  }
-  
-  .markdown-content strong {
-    font-weight: bold;
-  }
-  
-  .markdown-content em {
-    font-style: italic;
-  }
-  
 

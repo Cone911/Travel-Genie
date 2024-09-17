@@ -19,7 +19,7 @@ async function fetchTravelGenieResponse(prompt) {
           { role: 'user', content: prompt }
         ],
         max_tokens: 1000,
-        temperature: 0.7,
+        temperature: 0.6,
       }),
     });
 
@@ -47,8 +47,11 @@ async function create(req, res) {
     }
 
     const prompt = `Generate a detailed travel itinerary for ${days} days in ${city}, ${country} for ${adults} adults and ${children} children. 
-    Each day should have a unique set of activities, listed as bullet points. 
-    Format the response clearly, with headings like "Day 1", "Day 2", etc.`;
+    Each day should have a unique set of activities, listed as bullet points and divided in three sections: Morning, Afternoon and Evening.
+    For Morning, please include a sun emoji: ☀.
+    For Afternoon, please include a relevant food emoji, related to lunch.
+    For the Evening, please include a relevant emoji according to the activity, or default to a crescent moon: 🌙.
+    Always start your responses with a header in this format: "Day 1: [description]". Example: Day 1: Arrival in Lima`;
 
     const assistantResponse = await fetchTravelGenieResponse(prompt);
 
