@@ -28,7 +28,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  height: fit-content;
   font-family: Grandiore;
   color: whitesmoke;
 }

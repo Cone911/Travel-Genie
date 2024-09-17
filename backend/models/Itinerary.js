@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const segmentSchema = new Schema({
   day_number: { type: Number, required: true },
   description: { type: String, required: true },
-  image_url: { type: String, default: 'https://i.imgur.com/AGoG1hS.png' },
+  image_url: { type: String, default: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png' },
 }, {
   timestamps: true,
 });
@@ -23,6 +23,3 @@ const itinerarySchema = new Schema({
 });
 
 module.exports = mongoose.model('Itinerary', itinerarySchema);
-
-
-

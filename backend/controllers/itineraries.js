@@ -1,5 +1,4 @@
 const Itinerary = require('../models/Itinerary');
-const ItinerarySegment = require('../models/ItinerarySegment');
 const fetch = require('node-fetch');
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -84,7 +83,7 @@ function segmentResponse(response) {
     segments.push({
       day_number: index + 1,
       description: dayContent.trim(), 
-      image_url: 'https://i.imgur.com/AGoG1hS.png'
+      image_url: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png'
     });
   });
 
