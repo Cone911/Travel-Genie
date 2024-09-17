@@ -5,6 +5,9 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import '../HomePage/HomePage.css';
 
 export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddItinerary }) {
+  console.log('handleAddItinerary:', handleAddItinerary);
+
+  
   return (
     <div className="home-page">
       <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />

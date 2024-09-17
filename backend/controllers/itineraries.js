@@ -53,10 +53,8 @@ async function create(req, res) {
 
     const assistantResponse = await fetchTravelGenieResponse(prompt);
 
-    // Segment response by day
     const segments = segmentResponse(assistantResponse);
 
-    // Create the itinerary with embedded segments
     const itinerary = new Itinerary({
       user: req.user._id,
       country,
@@ -80,20 +78,18 @@ async function create(req, res) {
 function segmentResponse(response) {
   const segments = [];
   const days = response.split(/Day \d+/);
-  days.shift(); // Remove the first empty element
+  days.shift(); 
 
   days.forEach((dayContent, index) => {
     segments.push({
-      day_number: index + 1, // Ensure `day_number` is present
-      description: dayContent.trim(), // Ensure `description` is present
-      image_url: 'https://i.imgur.com/AGoG1hS.png' // Add a default image URL if needed
+      day_number: index + 1,
+      description: dayContent.trim(), 
+      image_url: 'https://i.imgur.com/AGoG1hS.png'
     });
   });
 
   return segments;
 }
-
-
 
 // Get a specific itinerary by ID
 async function show(req, res) {
