@@ -1,26 +1,69 @@
-import { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { getUser } from '../../services/authService';
 import './App.css';
 import NavBar from '../../components/NavBar/NavBar';
 import HomePage from '../HomePage/HomePage';
-import PostListPage from '../PostListPage/PostListPage';
 import ItineraryPage from '../ItineraryPage/ItineraryPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
+import * as itineraryService from '../../services/itineraryService';
 
 function App() {
   const [user, setUser] = useState(getUser());
-  const [itinerary, setItinerary] = useState([]);
+  const [itineraries, setItineraries] = useState([]);
   const [isSidebarVisible, setSidebarVisible] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchAllItineraries = async () => {
+      try {
+        const fetchedItineraries = await itineraryService.index();
+        setItineraries(fetchedItineraries);
+      } catch (err) {
+        console.error('Failed to fetch itineraries:', err);
+      }
+    };
+    if (user) fetchAllItineraries();
+  }, [user]);
+
+  const handleAddItinerary = async (itineraryData) => {
+    try {
+      const newItinerary = await itineraryService.create(itineraryData);
+      setItineraries([newItinerary, ...itineraries]);
+      navigate(`/itineraries/${newItinerary._id}`);
+    } catch (err) {
+      console.error('Failed to add itinerary:', err);
+    }
+  };
+
+  const handleUpdateItinerary = async (itineraryId, itineraryData) => {
+    try {
+      const updatedItinerary = await itineraryService.update(itineraryId, itineraryData);
+      setItineraries(itineraries.map(itinerary => 
+        itinerary._id === itineraryId ? updatedItinerary : itinerary));
+    } catch (err) {
+      console.error('Failed to update itinerary:', err);
+    }
+  };
+
+  const handleDeleteItinerary = async (itineraryId) => {
+    try {
+      await itineraryService.deleteItinerary(itineraryId);
+      setItineraries(itineraries.filter(itinerary => itinerary._id !== itineraryId));
+      navigate('/');
+    } catch (err) {
+      console.error('Failed to delete itinerary:', err);
+    }
+  };
 
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible);
   };
 
-  const handleSegmentRefresh = (index) => {
-    console.log(`Refreshing segment at index ${index}`); // TODO: Add refresh segment functionality.
-  };
+  // const handleSegmentRefresh = (index) => {
+  //   console.log(`Refreshing segment at index ${index}`); // TODO: Add refresh segment functionality.
+  // };
 
   return (
     <main id="react-app">
@@ -28,9 +71,8 @@ function App() {
       <section id="main-section">
         {user ? (
           <Routes>
-            <Route path="/" element={<HomePage toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />} />
-            <Route path="/itinerary" element={<ItineraryPage itinerary={itinerary} onSegmentRefresh={handleSegmentRefresh} />} />
-            <Route path="/posts" element={<PostListPage />} />
+            <Route path="/" element={<HomePage handleAddItinerary={handleAddItinerary} toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />} />
+            <Route path="/itineraries/:itineraryId" element={<ItineraryPage user={user} itineraries={itineraries} onSegmentRefresh={handleUpdateItinerary} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         ) : (

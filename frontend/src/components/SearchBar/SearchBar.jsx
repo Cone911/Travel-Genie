@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 import './SearchBar.css';
 
-export default function SearchBar() {
+export default function SearchBar({ handleAddItinerary }) {
 
   const [destination, setDestination] = useState('');
   const [days, setDays] = useState(1);
@@ -12,6 +13,38 @@ export default function SearchBar() {
   const [children, setChildren] = useState(0);
   const [adults, setAdults] = useState(1);
   const [showPartySizeSelector, setShowPartySizeSelector] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (!destination) {
+      setError('❌ Please select a destination ❌');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const newItineraryData = {
+        country: destination.split(', ').pop(),
+        city: destination.split(', ')[0],
+        days,
+        adults,
+        children,
+      };
+
+      handleAddItinerary(newItineraryData);
+
+    } catch (err) {
+      console.error('Failed to create itinerary:', err);
+      setError('🧞Oops! ⏳ The Genie is busy. Your wishes will be granted later 🙏');
+    } finally {
+      setLoading(false); 
+    }
+  };
+
 
   const handleChange = (value) => {
     setDestination(value);
@@ -19,7 +52,7 @@ export default function SearchBar() {
 
   const handleSelect = (destination) => {
     setDestination(destination);
-    console.log('Selected destination:', destination); // TODO: handle the selected destination.
+    console.log('Selected destination:', destination);
   };
 
   function incrementDays() {
@@ -74,11 +107,11 @@ export default function SearchBar() {
             />
             <div className="autocomplete-dropdown">
               {loading && <div><FontAwesomeIcon icon={faWandMagicSparkles} shake /></div>}
-              {suggestions.map((suggestion) => {
+              {suggestions.map((suggestion, index) => {
                 const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
                 const style = { backgroundColor: suggestion.active ? '#fafafa' : '#ffffff', cursor: 'pointer' };
                 return (
-                  <div
+                  <div key={index} 
                     {...getSuggestionItemProps(suggestion, {
                       className,
                       style,
@@ -170,8 +203,13 @@ export default function SearchBar() {
         )}
       </div>
       
-      
-      <button className="search-button">Ask the Genie!</button>
+      {/* STEP 4: ASK THE GENIE! */}
+      <button className="search-button" onClick={handleSubmit} disabled={loading}>
+        {loading ? 'Creating itinerary...' : 'Ask the Genie!'}
+      </button>
+
+      {/* Error Message */}
+      {error && <div className="error">{error}</div>}
     </div>
   );
 }

@@ -8,11 +8,12 @@ const itinerariesCtrl = require('../controllers/itineraries');
 // Index functionality
 router.get('/', ensureLoggedIn, itinerariesCtrl.index);
 
+// Show functionality.
+router.get('/:itineraryId', ensureLoggedIn, itinerariesCtrl.show);
+
 // Create functionality.
 router.post('/', ensureLoggedIn, itinerariesCtrl.create);
 
-// Show functionality.
-router.get('/:id', ensureLoggedIn, itinerariesCtrl.show);
 
 
 module.exports = router;

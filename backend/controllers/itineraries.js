@@ -105,14 +105,12 @@ function segmentResponse(response) {
 
 // Get a specific itinerary by ID
 async function show(req, res) {
-  try {
-    const itinerary = await Itinerary.findById(req.params.id).populate('segments');
+    const itinerary = await Itinerary.findById(req.params.itineraryId).populate('segments');
+
+    console.log('Fetched itinerary with populated segments:', itinerary); // Debugging log
+
     if (!itinerary) return res.status(404).json({ message: 'Itinerary not found' });
     res.json(itinerary);
-  } catch (error) {
-    console.error('Error fetching itinerary:', error.message);
-    res.status(500).json({ message: 'Error fetching itinerary' });
-  }
 }
 
 // Get all itineraries for the logged-in user

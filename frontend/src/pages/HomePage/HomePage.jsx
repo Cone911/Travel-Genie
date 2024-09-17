@@ -4,12 +4,12 @@ import PopularDestinations from '../../components/PopularDestinations/PopularDes
 import Sidebar from '../../components/Sidebar/Sidebar';
 import '../HomePage/HomePage.css';
 
-export default function HomePage({ toggleSidebar, isSidebarVisible }) {
+export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddItinerary }) {
   return (
     <div className="home-page">
       <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />
       <div className="main-content">
-        <SearchBar />
+        <SearchBar handleAddItinerary={handleAddItinerary}/>
         <PopularDestinations />
       </div>
     </div>

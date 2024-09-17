@@ -12,8 +12,6 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-console.log("Checking if my API is setup correctly: ", process.env.OPENAI_API_KEY);
-
 app.use(logger('dev'));
 // Serve static assets from the frontend's built code folder (dist)
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
@@ -29,11 +27,6 @@ app.use(require('./middleware/checkToken'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/itineraries', require('./routes/itineraries'));
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
-// Remember to use ensureLoggedIn middleware when mounting
-// routes and/or within the route modules to protect routes
-// that require a logged in user either
-// For example:
-// app.use('/api/posts', ensureLoggedIn, require('./routes/posts'));
 
 // Use a "catch-all" route to deliver the frontend's production index.html
 app.get('*', function (req, res) {
