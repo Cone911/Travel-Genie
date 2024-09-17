@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBusinessTime, faPerson, faChildReaching } from '@fortawesome/free-solid-svg-icons'
 import '../ItineraryPage/ItineraryPage.css';
 
 export default function ItineraryPage({ user, itineraries, onSegmentRefresh }) {
@@ -30,9 +32,16 @@ export default function ItineraryPage({ user, itineraries, onSegmentRefresh }) {
   return (
     <div className='main-content'>
       <div className='itinerary-title-container'>
-        <h2 className='itinerary-title'>{itinerary.city}, {itinerary.country}</h2>
-        <h4 className='itinerary-duration'>Duration: {itinerary.days} days</h4>
-        <h4 className='itinerary-party'>Adults: {itinerary.adults}, Children: {itinerary.children}</h4>
+        <div className='itinerary-title'>
+          <h2>{itinerary.city}, {itinerary.country}</h2>
+        </div>
+        <div className='itinerary-details'>
+          <h4><FontAwesomeIcon icon={faBusinessTime} size="lg" style={{color: "white",}} /> <span style={{color: "white"}}>Duration: </span>{itinerary.days} days</h4>
+          <h4><FontAwesomeIcon icon={faPerson} size="lg" style={{color: "white",}} /> <span style={{color: "white"}}>&nbsp; Adults: </span>{itinerary.adults}</h4>
+          {itinerary.children === 0 ? '' :
+          <h4><FontAwesomeIcon icon={faChildReaching} size="lg" style={{color: "#ffffff",}} /> <span style={{color: "white"}}>&nbsp; Children: </span>{itinerary.children}</h4>
+          }
+        </div>
       </div>
       {formattedSegments.map((segment) => (
         <div key={segment._id} className="itinerary-segment">

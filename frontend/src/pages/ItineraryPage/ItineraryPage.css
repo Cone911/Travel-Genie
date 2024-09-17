@@ -1,26 +1,20 @@
 .itinerary-title-container {
-    display: grid;
-    grid-template-areas:
-        "title duration"
-        "title party";
-    grid-template-rows: repeat(2, auto);
-    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%
 }
 
 .itinerary-title {
-   grid-area: title;
-   grid-row: span 2;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.itinerary-duration {
-    grid-area: duration;
-}
-
-.itinerary-party {
-    grid-area: party;
+.itinerary-details{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
 
 /* ---------------- */
@@ -46,9 +40,11 @@
 
 .itinerary-image{
     grid-area: image;
-    align-self: center;
     width: 80%;
     box-shadow: 5px 10px 8px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    /* top: 60px; */
+    align-self: center;
 }
 
 .itinerary-title{

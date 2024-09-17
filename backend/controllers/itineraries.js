@@ -47,10 +47,13 @@ async function create(req, res) {
     }
 
     const prompt = `Generate a detailed travel itinerary for ${days} days in ${city}, ${country} for ${adults} adults and ${children} children. 
+    Write your response in markdown format.
     Each day should have a unique set of activities, listed as bullet points and divided in three sections: Morning, Afternoon and Evening.
-    For Morning, please include a sun emoji: ☀.
+    Morning, Afternoon and Evening will always be titles.
+    For Morning, please include a relevant emoji according to the activities suggested or default to a sun: ☀.
     For Afternoon, please include a relevant food emoji, related to lunch.
     For the Evening, please include a relevant emoji according to the activity, or default to a crescent moon: 🌙.
+    These emojis should come to the left of the text. Example: ☀ Morning.
     Always start your responses with a header in this format: "Day 1: [description]". Example: Day 1: Arrival in Lima`;
 
     const assistantResponse = await fetchTravelGenieResponse(prompt);
