@@ -21,15 +21,9 @@ export default function NavBar({ user, setUser, toggleSidebar }) {
       </div>
       {user ? (
         <div className='navigation-right-side'>
-          <Link to="/posts">Post List</Link>
-          &nbsp; | &nbsp;
-          <Link to="/posts/new">New Post</Link>
-          &nbsp; | &nbsp;
           <Link to="" onClick={handleLogOut}>
             Log Out
           </Link>
-          &nbsp;&nbsp;
-          <span>Welcome, {user.name}</span>
         </div>
       ) : (
         <div className='navigation-right-side'>

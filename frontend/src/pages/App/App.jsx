@@ -67,7 +67,7 @@ function App() {
       <section id="main-section">
         {user ? (
           <Routes>
-            <Route path="/" element={<HomePage handleAddItinerary={handleAddItinerary} toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />} />
+            <Route path="/" element={<HomePage handleAddItinerary={handleAddItinerary} toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries}/>} />
             <Route path="/itineraries/:itineraryId" element={<ItineraryPage user={user} itineraries={itineraries} onSegmentRefresh={handleUpdateItinerary} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

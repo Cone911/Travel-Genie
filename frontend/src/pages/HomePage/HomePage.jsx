@@ -4,13 +4,13 @@ import PopularDestinations from '../../components/PopularDestinations/PopularDes
 import Sidebar from '../../components/Sidebar/Sidebar';
 import '../HomePage/HomePage.css';
 
-export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddItinerary }) {
+export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddItinerary, user, itineraries }) {
   console.log('handleAddItinerary:', handleAddItinerary);
 
   
   return (
     <div className="home-page">
-      <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />
+      <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries}/>
       <div className="main-content">
         <SearchBar handleAddItinerary={handleAddItinerary}/>
         <PopularDestinations />
