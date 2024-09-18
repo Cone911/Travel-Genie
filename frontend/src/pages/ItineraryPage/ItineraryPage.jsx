@@ -3,11 +3,18 @@ import { useParams } from 'react-router-dom';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBusinessTime, faPerson, faChildren } from '@fortawesome/free-solid-svg-icons'
+import { faBusinessTime, faPerson, faChildren, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Sidebar from '../../components/Sidebar/Sidebar';
 import '../ItineraryPage/ItineraryPage.css';
 
-export default function ItineraryPage({ user, toggleSidebar, isSidebarVisible, itineraries, onSegmentRefresh }) {
+export default function ItineraryPage({ 
+  user, 
+  toggleSidebar, 
+  isSidebarVisible, 
+  itineraries, 
+  onSegmentRefresh, 
+  handleDeleteItinerary}) {
+    
   const { itineraryId } = useParams(); 
 
   
@@ -30,9 +37,16 @@ export default function ItineraryPage({ user, toggleSidebar, isSidebarVisible, i
     };
   });
 
+  function handleDelete() {
+    const confirmDelete = window.confirm('🧞🙏: Your wishes are my command. \n Are you sure you want to delete this itinerary?');
+    if (confirmDelete) {
+      handleDeleteItinerary(itinerary._id);
+    }
+  };
+
   return (
     <div className="biggest-container">
-      <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries}/>
+      <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries} />
       <div className='main-content'>
         <div className='itinerary-title-container'>
           <div className='itinerary-title'>
@@ -44,7 +58,12 @@ export default function ItineraryPage({ user, toggleSidebar, isSidebarVisible, i
             {itinerary.children === 0 ? '' :
             <h4><FontAwesomeIcon icon={faChildren} size="lg" style={{color: "#ffffff",}} /> <span style={{color: "white"}}>Children: </span>{itinerary.children}</h4>
             }
+            <button className='delete-button' onClick={handleDelete}>
+              <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }} /> Delete
+            </button>
           </div>
+       
+        
         </div>
         {formattedSegments.map((segment) => (
           <div key={segment._id} className="itinerary-segment">

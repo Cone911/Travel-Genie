@@ -114,9 +114,26 @@ async function index(req, res) {
   }
 }
 
+// Delete a specific itinerary by ID
+async function deleteItinerary(req, res) {
+  try {
+    const deletedItinerary = await Itinerary.findByIdAndDelete(req.params.itineraryId);
+
+    if (!deletedItinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+    
+    res.json({ message: 'Itinerary deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting itinerary:', error.message);
+    res.status(500).json({ message: 'Error deleting itinerary' });
+  }
+}
+
 module.exports = {
   create,
   show,
   index,
+  delete: deleteItinerary,
 };
 

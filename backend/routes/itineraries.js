@@ -14,6 +14,7 @@ router.get('/:itineraryId', ensureLoggedIn, itinerariesCtrl.show);
 // Create functionality.
 router.post('/', ensureLoggedIn, itinerariesCtrl.create);
 
-
+// Delete functionality.
+router.delete('/:itineraryId', ensureLoggedIn, itinerariesCtrl.delete);
 
 module.exports = router;
