@@ -17,4 +17,7 @@ router.post('/', ensureLoggedIn, itinerariesCtrl.create);
 // Delete functionality.
 router.delete('/:itineraryId', ensureLoggedIn, itinerariesCtrl.delete);
 
+// Update a specific segment functionality
+router.put('/:itineraryId/segments/:dayNumber', ensureLoggedIn, itinerariesCtrl.updateSegment);
+
 module.exports = router;

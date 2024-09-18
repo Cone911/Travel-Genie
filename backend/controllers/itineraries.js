@@ -130,10 +130,69 @@ async function deleteItinerary(req, res) {
   }
 }
 
+// Update a specific segment in an itinerary
+async function updateSegment(req, res) {
+  const { itineraryId, dayNumber } = req.params;
+
+  try {
+    const itinerary = await Itinerary.findById(itineraryId);
+    if (!itinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    const segmentIndex = itinerary.segments.findIndex(segment => segment.day_number === parseInt(dayNumber));
+    if (segmentIndex === -1) {
+      return res.status(404).json({ message: 'Segment not found' });
+    }
+
+    const newSegmentData = await generateNewSegmentData(itinerary, dayNumber); //TODO: AI call
+
+    itinerary.segments[segmentIndex].description = newSegmentData.description;
+    itinerary.segments[segmentIndex].image_url = newSegmentData.image_url;
+
+    await itinerary.save();
+
+    res.json(itinerary.segments[segmentIndex]);
+  } catch (error) {
+    console.error('Error updating segment:', error);
+    res.status(500).json({ message: 'Failed to update segment' });
+  }
+}
+
+async function generateNewSegmentData(itinerary, dayNumber) {
+  const prompt = `
+Generate a detailed travel plan for Day ${dayNumber} in ${itinerary.city}, ${itinerary.country}, focusing on a balance of activities for the day. 
+Do not include any introductory or concluding sentences like "Here is your itinerary for the day." 
+Only provide the day structure in the following format:
+
+: [Short description]
+
+☀ **Morning**  
+- Breakfast at [place]: [description of meal and atmosphere].  
+- [Activity 1]: [Brief details of activity].
+
+🍽️ **Afternoon**  
+- Lunch at [place]: [description of meal and atmosphere].  
+- [Activity 2]: [Brief details of activity].
+
+🌙 **Evening**  
+- Dinner at [place]: [description of meal and atmosphere].  
+- [Activity 3]: [Brief details of activity].
+- Optional: End the evening at [place]: [relaxation or nightcap option].
+`;
+  const assistantResponse = await fetchTravelGenieResponse(prompt);
+
+  return {
+    description: assistantResponse,
+    image_url: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png',
+  };
+}
+
 module.exports = {
   create,
   show,
   index,
   delete: deleteItinerary,
+  updateSegment
 };
 

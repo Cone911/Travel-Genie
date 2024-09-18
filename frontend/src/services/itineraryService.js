@@ -26,3 +26,7 @@ export function update(itineraryId, itineraryData) {
 export function deleteItinerary(itineraryId) {
   return sendRequest(`${BASE_URL}/${itineraryId}`, 'DELETE');
 }
+
+export function refreshSegment(itineraryId, dayNumber) {
+  return sendRequest(`${BASE_URL}/${itineraryId}/segments/${dayNumber}`, 'PUT');
+}
