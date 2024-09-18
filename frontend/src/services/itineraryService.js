@@ -22,11 +22,13 @@ export function update(itineraryId, itineraryData) {
   return sendRequest(`${BASE_URL}/${itineraryId}`, 'PUT', itineraryData);
 }
 
+// Refresh a specific segment of the itinerary
+export function refreshSegment(itineraryId, dayNumber, conversationHistory) {
+  return sendRequest(`${BASE_URL}/${itineraryId}/segments/${dayNumber}`, 'PUT', { conversationHistory });
+}
+
 // Delete an itinerary
 export function deleteItinerary(itineraryId) {
   return sendRequest(`${BASE_URL}/${itineraryId}`, 'DELETE');
 }
 
-export function refreshSegment(itineraryId, dayNumber) {
-  return sendRequest(`${BASE_URL}/${itineraryId}/segments/${dayNumber}`, 'PUT');
-}

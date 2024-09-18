@@ -2,7 +2,7 @@ const Itinerary = require('../models/Itinerary');
 const fetch = require('node-fetch');
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-async function fetchTravelGenieResponse(prompt) {
+async function fetchTravelGenieResponse(prompt, conversationHistory = []) {
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -13,10 +13,9 @@ async function fetchTravelGenieResponse(prompt) {
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', 
-            content: "You are a city tour travel assistant who will be helping users create travel itineraries based on their travel duration, party specifics." 
-        },
-          { role: 'user', content: prompt }
+          { role: 'system', content: "You are a city tour travel assistant who will be helping users create travel itineraries based on their travel duration, party specifics." },
+          ...conversationHistory, // Add the previous conversation history here
+          { role: 'user', content: prompt },
         ],
         max_tokens: 1000,
         temperature: 0.6,
@@ -35,6 +34,7 @@ async function fetchTravelGenieResponse(prompt) {
     throw error;
   }
 }
+
 
 // Create a new itinerary
 async function create(req, res) {
@@ -162,8 +162,7 @@ async function updateSegment(req, res) {
     if (segmentIndex === -1) {
       return res.status(404).json({ message: 'Segment not found' });
     }
-
-    const newSegmentData = await generateNewSegmentData(itinerary, dayNumber); //TODO: AI call
+    const newSegmentData = await generateNewSegmentData(itinerary, dayNumber, req.body.conversationHistory);
 
     itinerary.segments[segmentIndex].description = newSegmentData.description;
     itinerary.segments[segmentIndex].image_url = newSegmentData.image_url;
@@ -177,7 +176,7 @@ async function updateSegment(req, res) {
   }
 }
 
-async function generateNewSegmentData(itinerary, dayNumber) {
+async function generateNewSegmentData(itinerary, dayNumber, conversationHistory) {
   const prompt = `
 Generate a detailed travel plan for Day ${dayNumber} in ${itinerary.city}, ${itinerary.country}, focusing on a balance of activities for the day. 
 Do not include any introductory or concluding sentences like "Here is your itinerary for the day." 
@@ -198,13 +197,16 @@ Only provide the day structure in the following format:
 - **[Activity 3](url)**: [Brief details of activity].
 - Optional: **End the evening at [place](url)**: [relaxation or nightcap option].
 `;
-  const assistantResponse = await fetchTravelGenieResponse(prompt);
+
+  // Pass conversationHistory to fetchTravelGenieResponse
+  const assistantResponse = await fetchTravelGenieResponse(prompt, conversationHistory);
 
   return {
     description: assistantResponse,
     image_url: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png',
   };
 }
+
 
 module.exports = {
   create,

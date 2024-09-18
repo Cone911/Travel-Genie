@@ -1,4 +1,3 @@
-import DOMPurify from 'dompurify';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +18,7 @@ export default function ItineraryPage({
   const { itineraryId } = useParams(); 
   const itinerary = itineraries.find(itinerary => itinerary._id === itineraryId);
   const [currentItinerary, setCurrentItinerary] = useState(itinerary || null);
+  const [conversationHistory, setConversationHistory] = useState([]);
 
   useEffect(() => {
     if (itinerary) {
@@ -35,13 +35,17 @@ export default function ItineraryPage({
     }
   }
 
-  async function handleSegmentRefresh(dayNumber) {
+  async function handleSegmentRefresh(dayNumber, conversationHistory) {
     try {
-      const updatedSegment = await itineraryService.refreshSegment(itineraryId, dayNumber);
+      const updatedSegment = await itineraryService.refreshSegment(itineraryId, dayNumber, conversationHistory);
       const updatedSegments = currentItinerary.segments.map(segment => 
         segment.day_number === dayNumber ? updatedSegment : segment
       );
       setCurrentItinerary({ ...currentItinerary, segments: updatedSegments });
+      setConversationHistory([...conversationHistory, {
+        role: 'assistant', 
+        content: updatedSegment.description
+      }]);
     } catch (err) {
       console.error('Failed to refresh segment:', err);
     }
@@ -75,13 +79,12 @@ export default function ItineraryPage({
             </button>
           </div>
         </div>
-
-        {/* Render each itinerary segment */}
         {currentItinerary.segments && currentItinerary.segments.map((segment) => (
           <ItinerarySegment 
             key={segment._id} 
             segment={segment} 
-            onSegmentRefresh={handleSegmentRefresh} 
+            onSegmentRefresh={(dayNumber) => handleSegmentRefresh(dayNumber, conversationHistory)}  
+            conversationHistory={conversationHistory}
           />
         ))}
       </div>
