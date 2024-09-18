@@ -84,9 +84,7 @@ button:disabled {
 }
 
 a {
-  border-radius: 0.8vmin;
-  padding: 0.5vmin;
-  font-size: 3vmin;
+  border-radius: 8px;
   text-decoration: none;
   color: whitesmoke;
   text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.85);

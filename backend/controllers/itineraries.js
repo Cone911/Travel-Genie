@@ -54,7 +54,25 @@ async function create(req, res) {
     For Afternoon, please include a relevant food emoji, related to lunch.
     For the Evening, please include a relevant emoji according to the activity, or default to a crescent moon: 🌙.
     These emojis should come to the left of the text. Example: ☀ Morning.
-    Always start your responses with a header in this format: "Day 1: [description]". Example: Day 1: Arrival in Lima`;
+    Always start your responses with a header in this format: "Day 1: [description]". Example: Day 1: Arrival in Lima.
+    Whenever possible, include include hyperlinks to the places or activities you are suggesting.
+    
+    Here's an example of how the structure of your response will look:
+    
+    # Day 1: [Short description]
+
+    ☀ **Morning**  
+    - **Breakfast at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 1](url)**: [Brief details of activity].
+
+    🍽️ **Afternoon**  
+    - **Lunch at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 2](url)**: [Brief details of activity].
+
+    🌙 **Evening**  
+    - **Dinner at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 3](url)**: [Brief details of activity].
+    - Optional: **End the evening at [place](url)**: [relaxation or nightcap option for couples, bar or club for groups of 4 or more].`;
 
     const assistantResponse = await fetchTravelGenieResponse(prompt);
 
@@ -168,17 +186,17 @@ Only provide the day structure in the following format:
 : [Short description]
 
 ☀ **Morning**  
-- Breakfast at [place]: [description of meal and atmosphere].  
-- [Activity 1]: [Brief details of activity].
+- **Breakfast at [place](url)**: [description of meal and atmosphere].  
+- **[Activity 1](url)**: [Brief details of activity].
 
 🍽️ **Afternoon**  
-- Lunch at [place]: [description of meal and atmosphere].  
-- [Activity 2]: [Brief details of activity].
+- **Lunch at [place](url)**: [description of meal and atmosphere].  
+- **[Activity 2](url)**: [Brief details of activity].
 
 🌙 **Evening**  
-- Dinner at [place]: [description of meal and atmosphere].  
-- [Activity 3]: [Brief details of activity].
-- Optional: End the evening at [place]: [relaxation or nightcap option].
+- **Dinner at [place](url)**: [description of meal and atmosphere].  
+- **[Activity 3](url)**: [Brief details of activity].
+- Optional: **End the evening at [place](url)**: [relaxation or nightcap option].
 `;
   const assistantResponse = await fetchTravelGenieResponse(prompt);
 
