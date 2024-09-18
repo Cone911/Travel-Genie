@@ -23,6 +23,17 @@
   margin-bottom: 0px;
 }
 
+.authentication-container{
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.login, .signup{
+  font-size: 1.5vmin;
+}
+
 .user-icon img {
   width: 8svw;
   position: relative;
