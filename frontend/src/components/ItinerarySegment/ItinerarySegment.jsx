@@ -31,9 +31,9 @@ export default function ItinerarySegment({ segment, onSegmentRefresh, conversati
         src={imageUrl}
         alt={`Image for Day ${segment.day_number}`}
       />
-      <h4 className="itinerary-title">
+      <h2 className="itinerary-title">
         Day {segment.day_number}: {formattedFirstLine}
-      </h4>
+      </h2>
       <div
         className="itinerary-description"
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
