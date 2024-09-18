@@ -1,6 +1,7 @@
 const Itinerary = require('../models/Itinerary');
 const fetch = require('node-fetch');
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 async function fetchTravelGenieResponse(prompt, conversationHistory = []) {
   try {
@@ -35,48 +36,56 @@ async function fetchTravelGenieResponse(prompt, conversationHistory = []) {
   }
 }
 
+async function fetchPlacePhotos(city, days) {
+  const photos = [];
 
-// Create a new itinerary
+  for (let day = 1; day <= days; day++) {
+    try {
+      const query = `${city} landmarks`;
+
+      const searchResponse = await fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=photos&key=${GOOGLE_PLACES_API_KEY}`);
+      const searchData = await searchResponse.json();
+
+      if (searchData.candidates && searchData.candidates[0].photos) {
+        const photoReference = searchData.candidates[0].photos[0].photo_reference;
+        const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${GOOGLE_PLACES_API_KEY}`;
+        photos.push(photoUrl);
+      } else {
+        // Fallback option:
+        photos.push('https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png');
+      }
+    } catch (error) {
+      console.error(`Error fetching photo for day ${day}:`, error);
+      // Fallback option #2:
+      photos.push('https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png');
+    }
+  }
+
+  return photos;
+}
+
+
+// Create a new itinerary with photos
 async function create(req, res) {
   try {
     const { country, city, days, adults, children } = req.body;
 
     if (!country || !city || !days || !adults || children === undefined) {
-      console.error('Missing required fields:', req.body);
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    const prompt = `Generate a detailed travel itinerary for ${days} days in ${city}, ${country} for ${adults} adults and ${children} children. 
-    Write your response in markdown format.
-    Each day should have a unique set of activities, listed as bullet points and divided in three sections: Morning, Afternoon and Evening.
-    Morning, Afternoon and Evening will always be titles.
-    For Morning, please include a relevant emoji according to the activities suggested or default to a sun: ☀.
-    For Afternoon, please include a relevant food emoji, related to lunch.
-    For the Evening, please include a relevant emoji according to the activity, or default to a crescent moon: 🌙.
-    These emojis should come to the left of the text. Example: ☀ Morning.
-    Always start your responses with a header in this format: "Day 1: [description]". Example: Day 1: Arrival in Lima.
-    Whenever possible, include include hyperlinks to the places or activities you are suggesting.
-    
-    Here's an example of how the structure of your response will look:
-    
-    # Day 1: [Short description]
-
-    ☀ **Morning**  
-    - **Breakfast at [place](url)**: [description of meal and atmosphere].  
-    - **[Activity 1](url)**: [Brief details of activity].
-
-    🍽️ **Afternoon**  
-    - **Lunch at [place](url)**: [description of meal and atmosphere].  
-    - **[Activity 2](url)**: [Brief details of activity].
-
-    🌙 **Evening**  
-    - **Dinner at [place](url)**: [description of meal and atmosphere].  
-    - **[Activity 3](url)**: [Brief details of activity].
-    - Optional: **End the evening at [place](url)**: [relaxation or nightcap option for couples, bar or club for groups of 4 or more].`;
-
+    // Fetch itinerary content using AI (ChatGPT or similar)
+    const prompt = `Generate a detailed travel itinerary for ${days} days in ${city}, ${country}...`;
     const assistantResponse = await fetchTravelGenieResponse(prompt);
 
-    const segments = segmentResponse(assistantResponse);
+    // Fetch photos for each day of the itinerary
+    const photoUrls = await fetchPlacePhotos(city, days);
+
+    const segments = assistantResponse.split(/Day \d+/).slice(1).map((dayContent, index) => ({
+      day_number: index + 1,
+      description: dayContent.trim(),
+      image_url: photoUrls[index] // Attach the corresponding photo to each segment
+    }));
 
     const itinerary = new Itinerary({
       user: req.user._id,
@@ -85,34 +94,33 @@ async function create(req, res) {
       days,
       adults,
       children,
-      segments,
+      segments
     });
 
     const savedItinerary = await itinerary.save();
-
     res.status(201).json(savedItinerary);
   } catch (error) {
-    console.error('Error creating itinerary:', error.message);
+    console.error('Error creating itinerary:', error);
     res.status(500).json({ message: 'Error creating itinerary' });
   }
 }
 
-// Helper function to split the Itinerary into segments.
-function segmentResponse(response) {
-  const segments = [];
-  const days = response.split(/Day \d+/);
-  days.shift(); 
+// // Helper function to split the Itinerary into segments.
+// function segmentResponse(response) {
+//   const segments = [];
+//   const days = response.split(/Day \d+/);
+//   days.shift(); 
 
-  days.forEach((dayContent, index) => {
-    segments.push({
-      day_number: index + 1,
-      description: dayContent.trim(), 
-      image_url: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png'
-    });
-  });
+//   days.forEach((dayContent, index) => {
+//     segments.push({
+//       day_number: index + 1,
+//       description: dayContent.trim(), 
+//       image_url: 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png'
+//     });
+//   });
 
-  return segments;
-}
+//   return segments;
+// }
 
 // Get a specific itinerary by ID
 async function show(req, res) {
