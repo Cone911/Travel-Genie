@@ -9,7 +9,7 @@ export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddIti
 
   
   return (
-    <div className="home-page">
+    <div className="biggest-container">
       <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries}/>
       <div className="main-content">
         <SearchBar handleAddItinerary={handleAddItinerary}/>

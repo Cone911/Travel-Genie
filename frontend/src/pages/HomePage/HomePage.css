@@ -1,4 +1,4 @@
-.home-page{
+.biggest-container{
     display: grid;
     grid-template-columns: 0 auto;
     column-gap: 1%;

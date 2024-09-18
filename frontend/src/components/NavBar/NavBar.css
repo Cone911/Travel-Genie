@@ -31,6 +31,10 @@
   font-family: 'DarkMagic', sans-serif;
 }
 
+.logout{
+  font-size: 2vmin;
+}
+
 .hamburger-button {
   font-family: monospace;
   font-size: 2cqh;

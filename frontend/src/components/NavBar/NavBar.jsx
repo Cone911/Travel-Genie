@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus, faRightFromBracket, faUserLargeSlash } from '@fortawesome/free-solid-svg-icons'
 
 import * as authService from '../../services/authService';
 import './NavBar.css';
@@ -21,7 +21,8 @@ export default function NavBar({ user, setUser, toggleSidebar }) {
       </div>
       {user ? (
         <div className='navigation-right-side'>
-          <Link to="" onClick={handleLogOut}>
+          <FontAwesomeIcon icon={faUserLargeSlash} size="lg" style={{color: "#fafafa",}} />
+          <Link className='logout' to="" onClick={handleLogOut}>
             Log Out
           </Link>
         </div>
