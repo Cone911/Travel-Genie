@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import './SearchBar.css';
 
 export default function SearchBar({ handleAddItinerary }) {
@@ -89,6 +90,7 @@ export default function SearchBar({ handleAddItinerary }) {
 
   return (
     <div className="search-bar">
+      {loading && <LoadingScreen />}
 
       {/* STEP 1: Select a Destination */}
       <PlacesAutocomplete
