@@ -17,7 +17,7 @@ export default function NavBar({ user, setUser, toggleSidebar }) {
     <nav className="NavBar">
       <div className='navigation-left-side'>
         <button className="hamburger-button" onClick={toggleSidebar}>&#9776;</button>
-        <Link className='logo' to="/"><h1>Travel Genie</h1></Link>
+        <Link className='logo' to="/"><img className='travel-genie-logo' src="../../../public/Navbar-Logo.png" alt="Travel Genie Logo" /></Link>
       </div>
       {user ? (
         <div className='navigation-right-side'>

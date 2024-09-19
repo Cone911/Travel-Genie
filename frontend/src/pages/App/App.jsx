@@ -57,10 +57,6 @@ function App() {
     setSidebarVisible(!isSidebarVisible);
   };
 
-  // const handleSegmentRefresh = (index) => {
-  //   console.log(`Refreshing segment at index ${index}`); // TODO: Add refresh segment functionality.
-  // };
-
   return (
     <main id="react-app">
       <NavBar user={user} setUser={setUser} toggleSidebar={toggleSidebar}/>

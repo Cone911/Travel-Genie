@@ -47,3 +47,8 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+.travel-genie-logo{
+  min-height: 50px;
+  max-height: 125px;
+}
