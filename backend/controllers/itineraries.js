@@ -113,6 +113,19 @@ async function fetchPlacePhotos(city, theme) {
   }
 }
 
+// Fetch all public itineraries
+async function getPublicItineraries(req, res) {
+  try {
+    const publicItineraries = await Itinerary.find({ is_public: true })
+      .populate('user', 'name')
+      .sort({ 'likes.length': -1 });
+    res.status(200).json(publicItineraries);
+  } catch (error) {
+    console.error('Error fetching public itineraries:', error);
+    res.status(500).json({ message: 'Failed to fetch public itineraries' });
+  }
+}
+
 // Create a new itinerary
 async function create(req, res) {
   try {
@@ -176,6 +189,7 @@ async function create(req, res) {
   }
 }
 
+// Helper function to split ChatGPTs responses into usable segments.
 async function generateSegments(response, city, country, days) {
   const segments = [];
   const images = await fetchUnsplashImages(city, country, days);
@@ -301,10 +315,60 @@ Only provide the day structure in the following format:
   };
 }
 
+// Update an entire itinerary (including public/private status)
+async function update(req, res) {
+  try {
+    const updatedItinerary = await Itinerary.findByIdAndUpdate(
+      req.params.itineraryId,
+      req.body, // This will include the updated `is_public` field
+      { new: true } // Return the updated itinerary
+    );
+
+    if (!updatedItinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    res.json(updatedItinerary); // Send back the updated itinerary
+  } catch (error) {
+    console.error('Error updating itinerary:', error);
+    res.status(500).json({ message: 'Error updating itinerary' });
+  }
+}
+
+// Toggle like/unlike an itinerary
+async function toggleLike(req, res) {
+  try {
+    const itinerary = await Itinerary.findById(req.params.itineraryId);
+
+    if (!itinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    const userId = req.user._id;
+
+    const alreadyLiked = itinerary.likes.some(like => like.user_id.equals(userId));
+
+    if (alreadyLiked) {
+      itinerary.likes = itinerary.likes.filter(like => !like.user_id.equals(userId));
+    } else {
+      itinerary.likes.push({ user_id: userId });
+    }
+
+    await itinerary.save();
+    res.status(200).json(itinerary); // Send back the updated itinerary
+  } catch (error) {
+    console.error('Error toggling like:', error);
+    res.status(500).json({ message: 'Failed to toggle like' });
+  }
+}
+
 module.exports = {
   create,
   show,
   index,
+  getPublicItineraries,
   delete: deleteItinerary,
+  update,
   updateSegment,
+  toggleLike,
 };

@@ -78,6 +78,18 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.bottom-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+h5{
+  font-size: 1.5vmin;
+  margin-bottom: 8px;
+}
+
+
 @keyframes appear {
   0% {
     opacity: 0.5;

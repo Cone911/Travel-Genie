@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Define the Like schema
+const likeSchema = new Schema({
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const segmentSchema = new Schema({
   day_number: { type: Number, required: true },
   description: { type: String, required: true },
@@ -18,6 +31,8 @@ const itinerarySchema = new Schema({
   adults: { type: Number, required: true },
   children: { type: Number, required: true },
   segments: [segmentSchema],
+  is_public: { type: Boolean, default: true },
+  likes: [likeSchema],
 }, {
   timestamps: true,
 });

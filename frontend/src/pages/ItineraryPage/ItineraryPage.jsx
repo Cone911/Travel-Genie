@@ -19,10 +19,12 @@ export default function ItineraryPage({
   const itinerary = itineraries.find(itinerary => itinerary._id === itineraryId);
   const [currentItinerary, setCurrentItinerary] = useState(itinerary || null);
   const [conversationHistory, setConversationHistory] = useState([]);
+  const [isPublic, setIsPublic] = useState(true);
 
   useEffect(() => {
     if (itinerary) {
       setCurrentItinerary(itinerary);
+      setIsPublic(itinerary.is_public);
     }
   }, [itinerary]);
 
@@ -51,6 +53,12 @@ export default function ItineraryPage({
     }
   }
 
+  async function togglePublicStatus() {
+    const updatedIsPublic = !isPublic;
+    setIsPublic(updatedIsPublic);
+    await itineraryService.update(itineraryId, { is_public: updatedIsPublic });
+  }
+
   return (
     <div className="biggest-container">
       <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries} />
@@ -77,6 +85,16 @@ export default function ItineraryPage({
             <button className="delete-button" onClick={handleDelete}>
               <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }} /> Delete
             </button>
+          </div>
+          <div className="public-toggle">
+            <label style={{ color: "white" }}>
+              <input 
+                type="checkbox" 
+                checked={isPublic} 
+                onChange={togglePublicStatus} 
+              />
+              {isPublic ? "Public" : "Private"}
+            </label>
           </div>
         </div>
         {currentItinerary.segments && currentItinerary.segments.map((segment) => (
