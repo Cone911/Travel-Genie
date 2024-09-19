@@ -48,7 +48,7 @@
     0 0 10px goldenrod;
   text-align: left;
   border-radius: 22px;
-  animation: appear linear;
+  animation: appear1 linear;
   animation-timeline: view(x);
   animation-range: entry 0% cover 100%;
 }
@@ -90,7 +90,7 @@ h5{
 }
 
 
-@keyframes appear {
+@keyframes appear1 {
   0% {
     opacity: 0.5;
     scale: 0.7;
