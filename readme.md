@@ -1,4 +1,4 @@
-# Travel Genie: Personalized Itinerary Planner
+# Travel Genie: dream destination itineraries, generated in seconds!
 
 ![Travel Genie](https://i.imgur.com/x5qNp21.png)
 
@@ -9,7 +9,8 @@
 <a href='mailto:jpe911@gmail.com'>![email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)</a> <a href='www.linkedin.com/in/juanpabloescobari'>![linkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)</a>
 <a href='https://github.com/Cone911'> ![github](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)</a>
 
-<h2 align="center"><strong><a href="https://travel-genie.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
+<h2 align="center"><strong><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
+<h3 align="center"><em><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Your wishes are my command 🙏🧞</em></h3>
 
 ## Table of Contents
 
@@ -24,9 +25,9 @@
 
 ## 1. Introduction
 
-***Your personal travel assistant, right in your browser!***
+***Imagine not ever again having to rely on your significant other to plan another vacation...***
 
-Travel Genie is a web-based application that helps users generate personalized travel itineraries based on their preferences. Users can input their desired destination, number of days, and party details, and Travel Genie will create an itinerary complete with activities, recommendations, and visual elements for each day of the trip. It’s perfect for tourists or anyone planning a trip who wants a custom-tailored experience.
+Travel Genie is a web-based application that helps you generate personalized travel itineraries based on your dream destination, trip duration and party specifics. Travel Genie will grant your wishes, generating an itinerary complete with activities, recommendations, and visual elements for each day of the trip. It’s perfect for tourists or anyone planning a trip who wants a custom-tailored experience.
 
 The application aims to provide an easy, user-friendly experience for travelers who want to organize their trips without the hassle of traditional travel planning.
 
@@ -37,7 +38,6 @@ The application aims to provide an easy, user-friendly experience for travelers 
 - Embedded visual elements, including location photos.
 - Users can mark itineraries as public and share their travel plans.
 - Other users can "like" popular itineraries, creating a community-driven set of suggestions.
-- Fully responsive design optimized for mobile and desktop.
 
 ![Travel Genie App](https://i.imgur.com/Pdt1GyW.png)
 
@@ -51,30 +51,28 @@ The application aims to provide an easy, user-friendly experience for travelers 
 - ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 - ![OpenAI API](https://img.shields.io/badge/OpenAI-4285F4?style=for-the-badge&logo=OpenAI&logoColor=white) - Used to generate personalized travel itineraries.
 - ![Unsplash API](https://img.shields.io/badge/Unsplash-000000?style=for-the-badge&logo=unsplash&logoColor=white) - For destination images.
-- ![Google Places API](https://img.shields.io/badge/Google%20Places-4285F4?style=for-the-badge&logo=google&logoColor=white) - For location images.
+- ![Google Places API](https://img.shields.io/badge/Google%20Places-4285F4?style=for-the-badge&logo=google&logoColor=white) - Images fallback mechanism and location autocomplete search box.
 
 ## 4. Getting Started
 
 <h2 align="center"><strong><a href="https://travel-genie.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
-
-### Note: Prerequisites to run locally.
-
-- Node.js installed on your system.
-- MongoDB instance (local or cloud-based) running.
 
 ## 5. How to Use Travel Genie
 
 1. **Log In or Sign Up**: Create an account or log in to start generating personalized itineraries.
 2. **Input Travel Details**: Enter your destination, the number of days, and party details (adults, children) to generate a tailored itinerary.
 3. **View or Edit Itineraries**: Review your generated itinerary and refresh specific segments if you'd like to explore new activity suggestions.
-4. **Public or Private**: Mark your itinerary as public or keep it private. Public itineraries appear in the "Popular Destinations" section where other users can like them.
+4. **Public or Private**: Mark your itinerary as public (default) or keep it private. Public itineraries appear in the "Popular Destinations" section where other users can like them.
 5. **Like Public Itineraries**: View itineraries from other users and like the ones that catch your interest.
 
 ## 6. Future Improvements
 
 - [ ] Improve the itinerary customization options for more personalized experiences.
+- [ ] Generate a travel summary page with links to all restaurants, simplifying reservations.
+- [ ] Generate a .pdf that's sent to your email address.
 - [ ] Implement a "recommended places to visit" feature using the Google Places API.
 - [ ] Add a social feature to follow other users’ itineraries and share travel experiences.
+- [ ] Responsive design.
 
 ## 7. Contributions
 
