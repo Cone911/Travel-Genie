@@ -10,7 +10,7 @@
 <a href='https://github.com/Cone911'> ![github](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)</a>
 
 <h2 align="center"><strong><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
-<h3 align="center"><em><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Your wishes are my command 🙏🧞</em></h3>
+<h3 align="center"><em><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Your wishes are my command </em>🙏🧞</h3>
 
 ## Table of Contents
 
