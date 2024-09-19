@@ -7,8 +7,6 @@ import './SearchBar.css';
 
 export default function SearchBar({ handleAddItinerary }) {
 
-  console.log('handleAddItinerary received in SearchBar:', handleAddItinerary);
-
   const [destination, setDestination] = useState('');
   const [days, setDays] = useState(1);
   const [showDaysSelector, setShowDaysSelector] = useState(false);
@@ -37,7 +35,7 @@ export default function SearchBar({ handleAddItinerary }) {
         children,
       };
 
-      handleAddItinerary(newItineraryData);
+      await handleAddItinerary(newItineraryData);
 
     } catch (err) {
       console.error('Failed to create itinerary:', err);

@@ -5,8 +5,6 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import '../HomePage/HomePage.css';
 
 export default function HomePage({ toggleSidebar, isSidebarVisible, handleAddItinerary, user, itineraries }) {
-  console.log('handleAddItinerary:', handleAddItinerary);
-
   
   return (
     <div className="biggest-container">
