@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import './ItinerarySegment.css';
 
 export default function ItinerarySegment({ segment, onSegmentRefresh, conversationHistory }) {
@@ -26,27 +29,29 @@ export default function ItinerarySegment({ segment, onSegmentRefresh, conversati
 
   return (
     <div className="itinerary-segment">
-      <div className='portrait-wrapper'>
-        <img
-          className="itinerary-image"
-          src={imageUrl}
-          alt={`Image for Day ${segment.day_number}`}
-        />
-      </div>
-        <h2 className="itinerary-title">
+      <h2 className="itinerary-title">
           Day {segment.day_number}: {formattedFirstLine}
         </h2>
+        <LoadingButton
+        className="refresh-button"
+        variant="outlined"
+        loading={loading}  
+        onClick={handleRefreshClick} 
+        loadingIndicator="Refreshing..."
+      >
+        <FontAwesomeIcon icon={faArrowsRotate} spin style={{color: "#ffffff"}} />&nbsp; Refresh Segment
+      </LoadingButton>
+      <div className='portrait-wrapper'>
+        <img className='watermark' src="../../../public/Travel-Genie-Watermark.png" alt="Travel-Genie-Watermark" />
+        <img className="itinerary-image" src={imageUrl} alt={`Image for Day ${segment.day_number}`}
+        />
+      </div>
+        
       <div
         className="itinerary-description"
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       ></div>
-      <button
-        className="itinerary-refresh-button"
-        onClick={handleRefreshClick}
-        disabled={loading}
-      >
-        {loading ? 'Refreshing...' : 'Refresh Segment'}
-      </button>
+      
     </div>
   );
 }

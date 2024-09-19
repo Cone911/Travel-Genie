@@ -14,8 +14,21 @@
 
 .itinerary-title {
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+
+.public-toggle{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.switch-label{
+  font-size: 1.5vmin;
+  font-weight: 400;
 }
 
 /* ---------------- */
@@ -27,15 +40,15 @@
     grid-template-areas:
     "title title"
     "image description"
-    "image button";
-    grid-template-rows: 0.15fr auto auto;
+    "button description";
+    grid-template-rows: 0.15fr auto;
+    margin: 24px 0 24px 0;
     padding: 0;
     width: 65%;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(2px); 
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3); 
     box-shadow: 5px 10px 8px 2px rgba(0, 0, 0, 0.5);
 }
 

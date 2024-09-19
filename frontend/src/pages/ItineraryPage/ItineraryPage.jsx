@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBusinessTime, faPerson, faChildren, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import ItinerarySegment from '../../components/ItinerarySegment/ItinerarySegment';
+import MaterialUISwitch from '../../components/MaterialUISwitch/MaterialUISwitch';
 import * as itineraryService from '../../services/itineraryService';
 import '../ItineraryPage/ItineraryPage.css';
 
@@ -66,6 +67,12 @@ export default function ItineraryPage({
         <div className="itinerary-title-container">
           <div className="itinerary-title">
             <h2>{currentItinerary.city}, {currentItinerary.country}</h2>
+          <div className="public-toggle">
+            <MaterialUISwitch checked={isPublic} onChange={togglePublicStatus} />
+            <span className='switch-label' style={{ color: "white", marginLeft: "8px" }}>
+              {isPublic ? "Public" : "Private"}
+            </span>
+          </div>
           </div>
           <div className="itinerary-details">
             <h4>
@@ -85,16 +92,6 @@ export default function ItineraryPage({
             <button className="delete-button" onClick={handleDelete}>
               <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }} /> Delete
             </button>
-          </div>
-          <div className="public-toggle">
-            <label style={{ color: "white" }}>
-              <input 
-                type="checkbox" 
-                checked={isPublic} 
-                onChange={togglePublicStatus} 
-              />
-              {isPublic ? "Public" : "Private"}
-            </label>
           </div>
         </div>
         {currentItinerary.segments && currentItinerary.segments.map((segment) => (
