@@ -37,13 +37,15 @@ async function fetchTravelGenieResponse(prompt, conversationHistory = []) {
   }
 }
 
-async function fetchUnsplashImage(query) {
+async function fetchUnsplashImage(city, country) {
   try {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_ACCESS_KEY}`);
+    const query = `${encodeURIComponent(city)}+${encodeURIComponent(country)}+tourism`;
+    const response = await fetch(`https://api.unsplash.com/photos/random?query=${query}&orientation=portrait&client_id=${UNSPLASH_ACCESS_KEY}`);
+
     const data = await response.json();
 
-    if (data.results && data.results.length > 0) {
-      return data.results[0].urls.regular;
+    if (data && data.urls && data.urls.regular) {
+      return data.urls.regular;
     } else {
       return null;
     }
@@ -53,48 +55,25 @@ async function fetchUnsplashImage(query) {
   }
 }
 
-async function fetchPlacePhotos(city, days) {
-  const photos = [];
-  const theme = [
-    "Top Landmark", 
-    "Top Monument", 
-    "Top Gastronomy", 
-    "Most iconic dish", 
-    "Night Views", 
-    "Day Views", 
-    "Landmarks OR Beaches", 
-    "Sights", 
-    "Night Photography", 
-    "Local Crafts", 
-    "Street Art",
-    "Top Bars",
-    "Landscape",
-    "Landmark"
-  ];
 
-  for (let day = 1; day <= days; day++) {
-    try {
-      const query = `${city} ${theme[day-1]}`;
 
-      const searchResponse = await fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=photos&key=${GOOGLE_PLACES_API_KEY}`);
-      const searchData = await searchResponse.json();
+async function fetchPlacePhotos(city, theme) {
+  try {
+    const query = `${city} ${theme}`;
+    const searchResponse = await fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=photos&key=${GOOGLE_PLACES_API_KEY}`);
+    const searchData = await searchResponse.json();
 
-      if (searchData.candidates && searchData.candidates[0].photos) {
-        const photoReference = searchData.candidates[0].photos[0].photo_reference;
-        const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1920&photoreference=${photoReference}&key=${GOOGLE_PLACES_API_KEY}`;
-        photos.push(photoUrl);
-      } else {
-        // Fallback option:
-        photos.push('https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png');
-      }
-    } catch (error) {
-      console.error(`Error fetching photo for day ${day}:`, error);
-      // Fallback option #2:
-      photos.push('https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png');
+    if (searchData.candidates && searchData.candidates[0].photos) {
+      const photoReference = searchData.candidates[0].photos[0].photo_reference;
+      const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=4096&photoreference=${photoReference}&key=${GOOGLE_PLACES_API_KEY}`;
+      return photoUrl;
+    } else {
+      return null;
     }
+  } catch (error) {
+    console.error('Error fetching place photo:', error);
+    return null;
   }
-
-  return photos;
 }
 
 
@@ -136,14 +115,7 @@ async function create(req, res) {
     - Optional: **End the evening at [place](url)**: [relaxation or nightcap option for couples, bar or club for groups of 4 or more].`;
 
     const assistantResponse = await fetchTravelGenieResponse(prompt);
-
-    const photoUrls = await fetchPlacePhotos(city, days);
-
-    const segments = assistantResponse.split(/Day \d+/).slice(1).map((dayContent, index) => ({
-      day_number: index + 1,
-      description: dayContent.trim(),
-      image_url: photoUrls[index] // Attach the corresponding photo to each segment
-    }));
+    const segments = await generateSegments(assistantResponse, city, country, days);
 
     const itinerary = new Itinerary({
       user: req.user._id,
@@ -162,6 +134,35 @@ async function create(req, res) {
     res.status(500).json({ message: 'Error creating itinerary' });
   }
 }
+
+async function generateSegments(response, city, country, days) {
+  const segments = [];
+  const theme = [
+    "Top Landmark", "Top Monument", "Top Gastronomy", "Most iconic dish", "Night Views", 
+    "Day Views", "Landmarks OR Beaches", "Sights", "Night Photography", "Local Crafts", 
+    "Street Art", "Top Bars", "Landscape", "Landmark"
+  ];
+
+  for (let i = 0; i < days; i++) {
+    const dayNumber = i + 1;
+    const description = response.split(/Day \d+/)[dayNumber].trim();
+    
+    let imageUrl = await fetchUnsplashImage(city, country);
+    
+    if (!imageUrl) {
+      const themeForDay = theme[i] || theme[0];
+      imageUrl = await fetchPlacePhotos(city, themeForDay);
+    }
+
+    segments.push({
+      day_number: dayNumber,
+      description: description,
+      image_url: imageUrl || 'https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png'
+    });
+  }
+  return segments;
+}
+
 
 // Get a specific itinerary by ID
 async function show(req, res) {
