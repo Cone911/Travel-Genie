@@ -32,7 +32,7 @@
 
   .box-three{
     border-bottom-right-radius:33px;
-    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%)
+    
   }
 
   .label-one, .label-two, .label-three{
@@ -70,7 +70,7 @@
     border-bottom-left-radius: 22px;
   }
 
-  #first-input:focus, #second-input:focus{
+  #first-input:focus, #second-input:focus, #third-input:focus{
     outline: none;
   }
 
@@ -141,7 +141,7 @@
     border-radius: 0 12px 12px 12px;
     color: whitesmoke;
     transform: translateX(18px);
-    z-index: 100;
+    z-index: 250;
   }
 
   .party-size-selector{

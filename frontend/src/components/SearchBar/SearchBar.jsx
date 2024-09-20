@@ -6,7 +6,7 @@ import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import './SearchBar.css';
 
-export default function SearchBar({ handleAddItinerary }) {
+export default function SearchBar({ handleAddItinerary, user }) {
 
   const [destination, setDestination] = useState('');
   const [days, setDays] = useState(1);
@@ -20,6 +20,12 @@ export default function SearchBar({ handleAddItinerary }) {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    
     if (!destination) {
       setError('❌ Please select a destination ❌');
       return;
