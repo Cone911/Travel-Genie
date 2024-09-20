@@ -26,7 +26,7 @@
     left: 0;
     width: 100%;
     height: 350px;
-    background-image: url('../../../public/Clouds.png');
+    background-image: url('/Clouds.png');
     background-size: 65%;
     background-repeat: no-repeat;
     background-position: center;
