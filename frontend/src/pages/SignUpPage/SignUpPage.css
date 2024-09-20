@@ -1,0 +1,9 @@
+#sign-up-form{
+    max-width: 85%;
+    padding:5%;
+    background: linear-gradient(
+        95deg,
+        rgba(0, 0, 0, 0),
+        rgba(195, 0, 0, 0.552)
+      );
+}
