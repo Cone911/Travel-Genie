@@ -1,6 +1,6 @@
 # Travel Genie: dream destination itineraries, generated in seconds!
 
-![Travel Genie](https://i.imgur.com/x5qNp21.png)
+![Travel Genie](https://i.postimg.cc/C15LhmDV/Travel-Genie-Screenshot.jpg)
 
 <h1 style="text-align: center;">Travel Genie</h1>
 
@@ -39,7 +39,7 @@ The application aims to provide an easy, user-friendly experience for travelers 
 - Users can mark itineraries as public and share their travel plans.
 - Other users can "like" popular itineraries, creating a community-driven set of suggestions.
 
-![Travel Genie App](https://i.imgur.com/Pdt1GyW.png)
+![Travel Genie App](https://i.postimg.cc/XYtTGLTb/Travel-Genie-Screenshot-2.jpg)
 
 ## 3. Technologies Used and Attributions
 
