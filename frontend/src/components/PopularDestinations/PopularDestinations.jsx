@@ -7,7 +7,6 @@ import * as itineraryService from '../../services/itineraryService';
 export default function PopularDestinations() {
   const [destinations, setDestinations] = useState([]);
 
-  // Fetch public itineraries on component mount
   useEffect(() => {
     async function fetchPublicItineraries() {
       try {
@@ -41,7 +40,7 @@ export default function PopularDestinations() {
         {destinations.length > 0 ? (
           destinations.map((destination) => (
             <div
-              key={destination._id} // assuming _id comes from the backend
+              key={destination._id}
               className="destination-card"
               style={{ backgroundImage: `url(${destination.segments[0]?.image_url || '../../images/Destinations/Default.jpg'})` }} // fallback to a default image
             >

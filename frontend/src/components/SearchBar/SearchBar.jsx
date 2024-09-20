@@ -20,8 +20,9 @@ export default function SearchBar({ handleAddItinerary, user }) {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    
+
     if (!user) {
+      console.log("No user, redirecting to login");
       navigate('/login');
       return;
     }
