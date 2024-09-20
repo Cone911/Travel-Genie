@@ -1,6 +1,6 @@
 # Travel Genie: Personalized Itinerary Planner
 
-![Travel Genie](https://i.imgur.com/x5qNp21.png)
+![Travel Genie](https://i.postimg.cc/C15LhmDV/Travel-Genie-Screenshot.jpg)
 
 <h1 style="text-align: center;">Travel Genie</h1>
 
@@ -9,7 +9,7 @@
 <a href='mailto:jpe911@gmail.com'>![email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)</a> <a href='www.linkedin.com/in/juanpabloescobari'>![linkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)</a>
 <a href='https://github.com/Cone911'> ![github](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)</a>
 
-<h2 align="center"><strong><a href="https://travel-genie.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
+<h2 align="center"><strong><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
 
 ## Table of Contents
 
@@ -39,7 +39,7 @@ The application aims to provide an easy, user-friendly experience for travelers 
 - Other users can "like" popular itineraries, creating a community-driven set of suggestions.
 - Fully responsive design optimized for mobile and desktop.
 
-![Travel Genie App](https://i.imgur.com/Pdt1GyW.png)
+![Travel Genie App](https://i.postimg.cc/XYtTGLTb/Travel-Genie-Screenshot-2.jpg)
 
 ## 3. Technologies Used and Attributions
 
@@ -52,10 +52,11 @@ The application aims to provide an easy, user-friendly experience for travelers 
 - ![OpenAI API](https://img.shields.io/badge/OpenAI-4285F4?style=for-the-badge&logo=OpenAI&logoColor=white) - Used to generate personalized travel itineraries.
 - ![Unsplash API](https://img.shields.io/badge/Unsplash-000000?style=for-the-badge&logo=unsplash&logoColor=white) - For destination images.
 - ![Google Places API](https://img.shields.io/badge/Google%20Places-4285F4?style=for-the-badge&logo=google&logoColor=white) - For location images.
+- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 ## 4. Getting Started
 
-<h2 align="center"><strong><a href="https://travel-genie.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
+<h2 align="center"><strong><a href="https://travel-genie-bc25ed2ebefa.herokuapp.com/">Try Travel Genie Now!</a></strong></h2>
 
 ### Note: Prerequisites to run locally.
 
@@ -82,4 +83,4 @@ Collabs and contributions are welcome! If you have any suggestions or improvemen
 
 ## 8. Planning Materials
 
-<h2 align="center"><a href="https://trello.com/b/02vKufow/travel-genie">Travel Genie Trello Board.</a></h2>
+<h2 align="center"><a href="https://trello.com/b/LY1zphZB/travel-genie">Travel Genie Trello Board.</a></h2>

@@ -32,7 +32,7 @@ body {
   font-weight: 250;
   text-shadow: 2px 3px 6px rgba(18, 18, 18, 0.8);
   color: whitesmoke;
-  background-image: url('../../../images/Background.png');
+  background-image: url('/Background.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
