@@ -14,7 +14,7 @@ export default function Sidebar({ toggleSidebar, isSidebarVisible, user, itinera
    <div className='sidebar-main-container'>
       <div className="user-icon">
         <img 
-          src='../../images/user.svg'
+          src='/user.svg'
           className="user-icon" 
         />
        {user ? (<h3 className='username-title'>{user.name}</h3>
