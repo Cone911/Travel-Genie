@@ -30,7 +30,7 @@ body {
   height: fit-content;
   font-family: "Source Sans 3";
   font-weight: 250;
-  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.9);
+  text-shadow: 2px 3px 6px rgba(18, 18, 18, 0.8);
   color: whitesmoke;
   background-image: url('../../../images/Background.png');
   background-repeat: no-repeat;
@@ -114,9 +114,9 @@ form {
 
 input {
   padding: 0.7vmin;
-  font-size: 2vmin;
-  border: 0.3vmin solid #1a1a1a;
-  border-radius: 0.5vmin;
+  font-size: 1.5vmin;
+  border: 3px solid #1a1a1a;
+  /* border-radius: 0.5vmin; */
 }
 
 form > button:last-child {

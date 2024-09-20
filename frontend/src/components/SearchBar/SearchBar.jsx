@@ -93,121 +93,133 @@ export default function SearchBar({ handleAddItinerary }) {
       {loading && <LoadingScreen />}
 
       {/* STEP 1: Select a Destination */}
-      <PlacesAutocomplete
-        value={destination}
-        onChange={handleChange}
-        onSelect={handleSelect}
-        searchOptions={{ types: ['(cities)'] }}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Pick a Destination',
-                className: 'search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown">
-              {loading && <div><FontAwesomeIcon icon={faWandMagicSparkles} shake /></div>}
-              {suggestions.map((suggestion, index) => {
-                const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
-                const style = { backgroundColor: suggestion.active ? '#daa520;' : '#5b1af22f', cursor: 'pointer' };
-                return (
-                  <div key={index} 
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
+      <div className='box-one'>
+        <div className='label-one'>Where?</div>
+        <PlacesAutocomplete
+          value={destination}
+          onChange={handleChange}
+          onSelect={handleSelect}
+          searchOptions={{ types: ['(cities)'] }}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <div>
+              <input
+                {...getInputProps({
+                  placeholder: 'Pick a Destination',
+                  className: 'search-input',
+                  id: 'first-input'
+                })}
+              />
+              <div className="autocomplete-dropdown">
+                {loading && <div><FontAwesomeIcon icon={faWandMagicSparkles} shake /></div>}
+                {suggestions.map((suggestion, index) => {
+                  const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
+                  const style = { backgroundColor: suggestion.active ? '#daa520;' : '#5b1af22f', cursor: 'pointer' };
+                  return (
+                    <div key={index} 
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style,
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
+          )}
+        </PlacesAutocomplete>
+      </div>
       
       {/* STEP 2: Select the trip duration. */}
-      <div className="trip-duration">
-          <input
-            type="text"
-            placeholder="Trip Duration"
-            className="search-input"
-            value={days > 0 ? `${days} day${days > 1 ? 's' : ''}` : ''}
-            onClick={toggleDaysSelector}
-            readOnly
-          />
-          {showDaysSelector && (
-          <div className={`days-selector`}>
-            <button className="circle-button" onClick={decrementDays} disabled={days <= 1}>-</button>
-            <span>{days} day{days > 1 ? 's' : ''}</span>
-            <button className="circle-button" onClick={incrementDays} disabled={days >= 14}>+</button>
-          </div>
-        )}
+      <div className='box-two'>
+        <div className='label-two'>For how long?</div>
+        <div className="trip-duration">
+            <input
+              type="text"
+              placeholder="Trip Duration"
+              className="search-input"
+              id='second-input'
+              value={days > 0 ? `${days} day${days > 1 ? 's' : ''}` : ''}
+              onClick={toggleDaysSelector}
+              readOnly
+            />
+            {showDaysSelector && (
+            <div className={`days-selector`}>
+              <button className="circle-button" onClick={decrementDays} disabled={days <= 1}>-</button>
+              <span>{days} day{days > 1 ? 's' : ''}</span>
+              <button className="circle-button" onClick={incrementDays} disabled={days >= 14}>+</button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* STEP 3: Specify the size of your party. */}
-      <div className="party-size">
-        <input
-          type="text"
-          placeholder="Party Size"
-          className="search-input"
-          value={`Party Size: ${children + adults} ${children + adults > 1 ? 'people' : 'adult'}`}
-          onClick={togglePartySizeSelector}
-          readOnly
-        />
-        {showPartySizeSelector && (
-          <div className="party-size-selector">
-            {/* Row 1: Children Selector */}
-            <div className="party-row">
-              <span>Children: </span>
-              <div className='selector-controls'>
-                <button
-                  className="circle-button"
-                  onClick={decrementChildren}
-                  disabled={children <= 0}
-                >
-                  -
-                </button>
-                <span>{children}</span>
-                <button
-                  className="circle-button"
-                  onClick={incrementChildren}
-                  disabled={children >= 6}
-                >
-                  +
-                </button>
+      <div className='box-three'>
+        <div className='label-three'>How many?</div>
+        <div className="party-size">
+          <input
+            type="text"
+            placeholder="Party Size"
+            className="search-input"
+            id='third-input'
+            value={`Party Size: ${children + adults} ${children + adults > 1 ? 'people' : 'adult'}`}
+            onClick={togglePartySizeSelector}
+            readOnly
+          />
+          {showPartySizeSelector && (
+            <div className="party-size-selector">
+              {/* Row 1: Children Selector */}
+              <div className="party-row">
+                <span>Children: </span>
+                <div className='selector-controls'>
+                  <button
+                    className="circle-button"
+                    onClick={decrementChildren}
+                    disabled={children <= 0}
+                  >
+                    -
+                  </button>
+                  <span>{children}</span>
+                  <button
+                    className="circle-button"
+                    onClick={incrementChildren}
+                    disabled={children >= 6}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              {/* Row 2: Adults Selector */}
+              <div className="party-row">
+                <span>Adults: </span>
+                <div className='selector-controls'>
+                  <button
+                    className="circle-button"
+                    onClick={decrementAdults}
+                    disabled={adults <= 1}
+                  >
+                    -
+                  </button>
+                  <span>{adults}</span>
+                  <button
+                    className="circle-button"
+                    onClick={incrementAdults}
+                    disabled={adults >= 12}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
-            {/* Row 2: Adults Selector */}
-            <div className="party-row">
-              <span>Adults: </span>
-              <div className='selector-controls'>
-                <button
-                  className="circle-button"
-                  onClick={decrementAdults}
-                  disabled={adults <= 1}
-                >
-                  -
-                </button>
-                <span>{adults}</span>
-                <button
-                  className="circle-button"
-                  onClick={incrementAdults}
-                  disabled={adults >= 12}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
       
       {/* STEP 4: ASK THE GENIE! */}
-      <button className="search-button" onClick={handleSubmit} disabled={loading}>
-        {loading ? 'Creating itinerary...' : 'Ask the Genie!'}
+      <button id="genie-button" onClick={handleSubmit} disabled={loading}>
+        {loading ? (<span className='ask'>'Creating itinerary...'</span>) : (<span className='ask'>'Ask the Genie!'</span>)}
       </button>
 
       {/* Error Message */}
