@@ -42,7 +42,7 @@ export default function ItinerarySegment({ segment, onSegmentRefresh, conversati
         <FontAwesomeIcon icon={faArrowsRotate} spin style={{color: "#ffffff"}} />&nbsp; Refresh Segment
       </LoadingButton>
       <div className='portrait-wrapper'>
-        <img className='watermark' src="../../../public/Travel-Genie-Watermark.png" alt="Travel-Genie-Watermark" />
+        <img className='watermark' src="/Travel-Genie-Watermark.png" alt="Travel-Genie-Watermark" />
         <img className="itinerary-image" src={imageUrl} alt={`Image for Day ${segment.day_number}`}
         />
       </div>
