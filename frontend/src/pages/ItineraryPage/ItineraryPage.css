@@ -19,6 +19,13 @@
    align-items: center;
 }
 
+.title-and-flag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 12px;
+}
+
 .public-toggle{
   width: 100%;
   display: flex;

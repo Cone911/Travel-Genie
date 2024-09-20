@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBusinessTime, faPerson, faChildren, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { getCountryCode } from '../../utils/contryCodes';
+import ReactCountryFlag from 'react-country-flag';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import ItinerarySegment from '../../components/ItinerarySegment/ItinerarySegment';
 import MaterialUISwitch from '../../components/MaterialUISwitch/MaterialUISwitch';
@@ -60,13 +62,29 @@ export default function ItineraryPage({
     await itineraryService.update(itineraryId, { is_public: updatedIsPublic });
   }
 
+  const countryCode = getCountryCode(itinerary.country);
+
   return (
     <div className="biggest-container">
       <Sidebar toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} user={user} itineraries={itineraries} />
       <div className="main-content">
         <div className="itinerary-title-container">
           <div className="itinerary-title">
-            <h2>{currentItinerary.city}, {currentItinerary.country}</h2>
+            <section className='title-and-flag'>
+              <h2>{currentItinerary.city}, {currentItinerary.country}</h2>
+              <ReactCountryFlag 
+                      className='country-flag' 
+                      countryCode={countryCode} 
+                      svg 
+                      style={{
+                        width: '3.5vmin',
+                        height: '3.5vmin',
+                        margin: '0px',
+                        padding: '0px'
+                      }}
+                      title={itinerary.country}
+                    />
+              </section>
           <div className="public-toggle">
             <MaterialUISwitch checked={isPublic} onChange={togglePublicStatus} />
             <span className='switch-label' style={{ color: "white", marginLeft: "8px" }}>
