@@ -34,7 +34,7 @@ export default function PopularDestinations() {
   return (
     <div className="popular-destinations">
       <div className='popular-destinations-title'>
-        <h2>Community's Wishes</h2>
+        <h2>Wishes of the Community</h2>
       </div>
       <div className="destinations-carousel">
         {destinations.length > 0 ? (
