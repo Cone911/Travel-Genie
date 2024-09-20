@@ -286,23 +286,24 @@ async function generateNewSegmentData(
   const prompt = `
 Generate a detailed travel plan for Day ${dayNumber} in ${itinerary.city}, ${itinerary.country}, focusing on a balance of activities for the day. 
 Do not include any introductory or concluding sentences like "Here is your itinerary for the day." 
-Only provide the day structure in the following format:
+Whenever possible, include include hyperlinks to the places or activities you are suggesting.
+Do not include the day number (e.g. "Day 2). Provide the day structure in the following format:
 
-: [Short description]
+# [Short description]
 
-### ☀ **Morning**  
-- **Breakfast at [place](url)**: [description of meal and atmosphere].  
-- **[Activity 1](url)**: [Brief details of activity].
+    ### ☀ Morning  
+    - **Breakfast at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 1](url)**: [Brief details of activity].
 
-### 🍽️ **Afternoon**  
-- **Lunch at [place](url)**: [description of meal and atmosphere].  
-- **[Activity 2](url)**: [Brief details of activity].
+    ### 🍽️ Afternoon 
+    - **Lunch at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 2](url)**: [Brief details of activity].
 
-### 🌙 **Evening**  
-- **Dinner at [place](url)**: [description of meal and atmosphere].  
-- **[Activity 3](url)**: [Brief details of activity].
-- Optional: **End the evening at [place](url)**: [relaxation or nightcap option].
-`;
+    ### 🌙 Evening 
+    - **Dinner at [place](url)**: [description of meal and atmosphere].  
+    - **[Activity 3](url)**: [Brief details of activity].
+    - Optional: **End the evening at [place](url)**: [relaxation or nightcap option for couples, bar or club for groups of 4 or more].`;
+
 
   const assistantResponse = await fetchTravelGenieResponse(
     prompt,
@@ -311,7 +312,7 @@ Only provide the day structure in the following format:
 
   return {
     description: assistantResponse,
-    image_url: "https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png",
+    // image_url: "https://i.postimg.cc/hGs6rcYX/Image-Placeholder.png",
   };
 }
 
